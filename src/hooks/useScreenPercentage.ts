@@ -10,9 +10,14 @@ const useScreenPercentage = () => {
         return (Dimensions.get('window').height - (Dimensions.get('window').height / 100 * (100 - Number(percentage)))).toFixed(0)
     }
 
+    const fontSize = (percentage: Number) => {
+        return (Dimensions.get('window').height / 100 * Number(percentage)).toFixed(0)
+    }
+
     return {
         width,
         height,
+        fontSize,
     }
 }
 
