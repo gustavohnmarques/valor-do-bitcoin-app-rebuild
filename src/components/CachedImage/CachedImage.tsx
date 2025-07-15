@@ -3,7 +3,7 @@ import FastImage from "@d11/react-native-fast-image";
 import { CachedImageProps } from "./Types";
 import { IMAGE_URL } from '@env';
 
-const CachedImage: React.FC<CachedImageProps> = ({uri, style}) => {    
+const CachedImage: React.FC<CachedImageProps> = ({uri, style}) => {        
     return (
         <FastImage
             style={style}
