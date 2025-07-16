@@ -13,7 +13,6 @@ const CryptoScreen: React.FC = () => {
 
 
     const renderExchanges = useCallback(() => {
-
         if (!exchanges.length) return <></>
 
         return <FlatList
@@ -26,12 +25,10 @@ const CryptoScreen: React.FC = () => {
             keyExtractor={(item) => item.id.toString()}
             scrollEnabled={false}
         />
-
     }, [exchanges]);
 
 
     const renderSkeleton = useCallback(() => {
-
         return <FlatList
             data={[0, 1, 2, 3, 4]}
             style={{ paddingBottom: 20 }}
@@ -42,7 +39,6 @@ const CryptoScreen: React.FC = () => {
             keyExtractor={(item) => item.toString()}
             scrollEnabled={false}
         />
-
     }, []);
 
     return (
