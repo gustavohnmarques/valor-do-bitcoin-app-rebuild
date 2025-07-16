@@ -1,4 +1,4 @@
-import { FlatList, Text, View } from "react-native";
+import { FlatList, RefreshControl, Text, View } from "react-native";
 import * as S from "./CryptoScreen.styles";
 import CrytoHeader from "../../components/CrytoHeader/CrytoHeader";
 import useCryptoScreen from "./useCryptoScreen";
@@ -9,7 +9,13 @@ import ExchangeItemSkeleton from "../../components/ExchangeItem/ExchangeItemSkel
 
 const CryptoScreen: React.FC = () => {
 
-    const { cryptos, exchanges, isLoading } = useCryptoScreen();
+    const { 
+        exchanges, 
+        isLoading, 
+        skeletonQuantity,
+        handleCryptoChange,
+        cryptos
+    } = useCryptoScreen();
 
 
     const renderExchanges = useCallback(() => {
@@ -28,12 +34,12 @@ const CryptoScreen: React.FC = () => {
     }, [exchanges]);
 
 
-    const renderSkeleton = useCallback(() => {
+    const renderSkeleton = useCallback(() => {        
         return <FlatList
-            data={[0, 1, 2, 3, 4]}
+            data={[...Array(skeletonQuantity).keys()]}
             style={{ paddingBottom: 20 }}
             renderItem={(item) => (
-                <ExchangeItemSkeleton  />
+                <ExchangeItemSkeleton />
             )}
             contentContainerStyle={{ gap: 20 }}
             keyExtractor={(item) => item.toString()}
@@ -43,7 +49,12 @@ const CryptoScreen: React.FC = () => {
 
     return (
         <S.Container>
-            <S.ExchangeList>
+            <S.ExchangeList
+                refreshControl={
+                    <RefreshControl
+                        refreshing={false}
+                        onRefresh={handleCryptoChange} />
+                }>
                 {isLoading ? renderSkeleton() : renderExchanges()}
             </S.ExchangeList>
 

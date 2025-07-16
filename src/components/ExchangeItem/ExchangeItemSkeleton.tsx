@@ -7,7 +7,7 @@ const ExchangeItemSkeleton: React.FC = () => {
     return (
         <S.Container>
             <S.ImageContainer>
-                <Skeleton height={useScreenPercentage().height(6).toNumber()} width={useScreenPercentage().height(6).toNumber()} borderRadius={10} />
+                <Skeleton height={useScreenPercentage().height(5).toNumber()} width={useScreenPercentage().height(5).toNumber()} borderRadius={10} />
             </S.ImageContainer>
             <S.ExchangeDetails>
                 <S.ExchangeData>
