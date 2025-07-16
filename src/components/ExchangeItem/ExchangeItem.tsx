@@ -13,8 +13,8 @@ const ExchangeItem: React.FC<Exchange> = ({ name, image, last, vol, date }) => {
             <S.ImageContainer>
                 <CachedImage uri={`/corretoras/${image}`} style={{
                     borderRadius: 10,
-                    width: Number(useScreenPercentage().height(5)),
-                    height: Number(useScreenPercentage().height(5))
+                    width: useScreenPercentage().height(5).toNumber(),
+                    height: useScreenPercentage().height(5).toNumber()
                 }} />
             </S.ImageContainer>
             <S.ExchangeDetails>
@@ -24,7 +24,7 @@ const ExchangeItem: React.FC<Exchange> = ({ name, image, last, vol, date }) => {
                 </S.ExchangeData>
 
                 <S.CryptoData>
-                    <S.CryptoValue style={{ fontSize: Number(useScreenPercentage().fontSize(Number(last) < 1 ? 1.7 : 1.5)) }}>
+                    <S.CryptoValue style={{ fontSize: useScreenPercentage().fontSize(Number(last) < 1 ? 1.7 : 1.5).toNumber() }}>
                         R$ {FormatCurrency({ amount: last, decimalCount: Number(last) < 1 ? 10 : 2 })}
                     </S.CryptoValue>
 
