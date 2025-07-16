@@ -1,10 +1,10 @@
-import useScreenPercentage from "../../../hooks/useScreenPercentage";
-import CachedImage from "../CachedImage";
+import useScreenPercentage from "../../hooks/useScreenPercentage";
+import CachedImage from "../CachedImage/CachedImage";
 import * as S from "./ExchangeItem.styles";
-import { FormatCurrency } from "../../../utils/FormatCurrency";
-import { FormatTimeAgo } from "../../../utils/FormatTimeAgo";
-import { Skeleton } from "../../Skeleton/Skeleton";
-import { Exchange } from "../../../types/Exchange.types";
+import { FormatCurrency } from "../../utils/FormatCurrency";
+import { FormatTimeAgo } from "../../utils/FormatTimeAgo";
+import { Skeleton } from "../Skeleton/Skeleton";
+import { Exchange } from "../../types/Exchange.types";
 
 const ExchangeItem: React.FC<Exchange> = ({ name, image, last, vol, date }) => {
 

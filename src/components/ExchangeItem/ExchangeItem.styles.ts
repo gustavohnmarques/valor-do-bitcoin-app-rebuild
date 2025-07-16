@@ -1,5 +1,5 @@
 import styled from '@emotion/native'
-import useScreenPercentage from '../../../hooks/useScreenPercentage'
+import useScreenPercentage from '../../hooks/useScreenPercentage'
 
 export const Container = styled.View`
     height: ${useScreenPercentage().height(7)}px;

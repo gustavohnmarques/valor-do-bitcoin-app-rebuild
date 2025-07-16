@@ -1,6 +1,6 @@
-import useScreenPercentage from "../../../hooks/useScreenPercentage";
+import useScreenPercentage from "../../hooks/useScreenPercentage";
 import * as S from "./ExchangeItem.styles";
-import { Skeleton } from "../../Skeleton/Skeleton";
+import { Skeleton } from "../Skeleton/Skeleton";
 
 const ExchangeItemSkeleton: React.FC = () => {
 
