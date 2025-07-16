@@ -6,18 +6,14 @@ import useScreenPercentage from "../../hooks/useScreenPercentage";
 import { Alert } from "react-native";
 
 const useCryptoScreen = () => {
-
-    const [cryptos, setCryptos] = useState<Crypto[]>([]);
-    const [selectedCrypto, setSelectedCrypto] = useState<Crypto>();
+    
+    const [selectedCrypto, setSelectedCrypto] = useState<Crypto>({
+        id: 1,
+        name: 'BTC',
+    });
     const [exchanges, setExchanges] = useState<Exchange[]>([]);
     const [isLoading, setIsLoading] = useState<boolean>(true);
-
-    useEffect(() => {
-        setSelectedCrypto({
-            id: 'BTC',
-            name: 'Bitcoin',
-        });
-    }, []);
+    const [orderBy, setOrderBy] = useState<'asc' | 'desc'>('asc');
 
     useEffect(() => {
         handleCryptoChange();
@@ -28,7 +24,7 @@ const useCryptoScreen = () => {
         if (!selectedCrypto) return;
         
         setIsLoading(true);
-        ExchangeService.getByCrypto(selectedCrypto.id).then(response => {
+        ExchangeService.getByCrypto(selectedCrypto.name).then(response => {
             setExchanges(response.data);
         }).catch(error => {
             Alert.alert("Erro", "Não foi possível carregar as exchanges para a criptomoeda selecionada.");
@@ -44,11 +40,14 @@ const useCryptoScreen = () => {
     }, []);
 
     return {
+        selectedCrypto,
+        setSelectedCrypto,        
         handleCryptoChange,
-        isLoading,
-        cryptos,
+        isLoading,        
         exchanges,
-        skeletonQuantity
+        skeletonQuantity,
+        orderBy,
+        setOrderBy
     }
 }
 

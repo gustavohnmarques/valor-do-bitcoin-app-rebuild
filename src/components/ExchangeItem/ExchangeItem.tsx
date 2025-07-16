@@ -3,15 +3,15 @@ import CachedImage from "../CachedImage/CachedImage";
 import * as S from "./ExchangeItem.styles";
 import { FormatCurrency } from "../../utils/FormatCurrency";
 import { FormatTimeAgo } from "../../utils/FormatTimeAgo";
-import { Skeleton } from "../Skeleton/Skeleton";
 import { Exchange } from "../../types/Exchange.types";
+import { useMemo } from "react";
 
 const ExchangeItem: React.FC<Exchange> = ({ name, image, last, vol, date }) => {
-
+    
     return (
         <S.Container>
             <S.ImageContainer>
-                <CachedImage uri={`/corretoras/${image}`} style={{
+                <CachedImage uri={`/exchange/${image}`} style={{
                     borderRadius: 10,
                     width: useScreenPercentage().height(5).toNumber(),
                     height: useScreenPercentage().height(5).toNumber()

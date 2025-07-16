@@ -25,7 +25,7 @@ export const ExchangeDetails = styled.View`
 export const ExchangeData = styled.View`
     align-items: flex-start;
     justify-content: space-evenly;    
-    width: 50%;
+    width: 45%;
 `
 
 export const ExchangeName = styled.Text`
@@ -44,7 +44,7 @@ export const ExchangeVol = styled.Text`
 export const CryptoData = styled.View`
     align-items: flex-end;
     justify-content: center;
-    width: 50%;
+    width: 55%;
     padding-right: 15px;
     gap: 5px;
 `

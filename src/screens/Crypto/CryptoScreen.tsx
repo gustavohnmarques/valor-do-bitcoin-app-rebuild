@@ -9,12 +9,15 @@ import ExchangeItemSkeleton from "../../components/ExchangeItem/ExchangeItemSkel
 
 const CryptoScreen: React.FC = () => {
 
-    const { 
-        exchanges, 
-        isLoading, 
+    const {
+        exchanges,
+        isLoading,
         skeletonQuantity,
         handleCryptoChange,
-        cryptos
+        selectedCrypto,
+        orderBy,
+        setOrderBy,
+        setSelectedCrypto,
     } = useCryptoScreen();
 
 
@@ -34,7 +37,7 @@ const CryptoScreen: React.FC = () => {
     }, [exchanges]);
 
 
-    const renderSkeleton = useCallback(() => {        
+    const renderSkeleton = useCallback(() => {
         return <FlatList
             data={[...Array(skeletonQuantity).keys()]}
             style={{ paddingBottom: 20 }}
@@ -49,6 +52,12 @@ const CryptoScreen: React.FC = () => {
 
     return (
         <S.Container>
+            <CrytoHeader
+                selectedCrypto={selectedCrypto}
+                setSelectedCrypto={setSelectedCrypto}
+                orderBy={orderBy}
+                setOrderBy={setOrderBy}
+            />
             <S.ExchangeList
                 refreshControl={
                     <RefreshControl

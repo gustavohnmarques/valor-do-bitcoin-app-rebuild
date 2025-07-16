@@ -1,5 +1,8 @@
 import { Crypto } from "../../types/Crypto.types";
 
 export interface CryptoHeaderProps {
-    onChangeCrypto: (crypto: Crypto) => void;
+    selectedCrypto: Crypto;
+    setSelectedCrypto: (crypto: Crypto) => void;
+    orderBy: 'asc' | 'desc';
+    setOrderBy: (order: 'asc' | 'desc') => void;
 }
