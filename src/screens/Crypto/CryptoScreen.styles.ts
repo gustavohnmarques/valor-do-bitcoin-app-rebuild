@@ -8,7 +8,6 @@ export const Container = styled.SafeAreaView`
 
 export const ExchangeList = styled.ScrollView`
     flex: 1;
-    background-color: #242c35;
-    padding: 10px;
+    background-color: #242c35;    
     gap: 15px;
 `
