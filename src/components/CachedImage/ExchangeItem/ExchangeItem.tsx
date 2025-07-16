@@ -1,7 +1,7 @@
 import useScreenPercentage from "../../../hooks/useScreenPercentage";
 import CachedImage from "../CachedImage";
 import * as S from "./ExchangeItem.styles";
-import { FormatCurrency } from "../../../utils/formatCurrency";
+import { FormatCurrency } from "../../../utils/FormatCurrency";
 import { FormatTimeAgo } from "../../../utils/FormatTimeAgo";
 import { Skeleton } from "../../Skeleton/Skeleton";
 import { Exchange } from "../../../types/Exchange.types";
