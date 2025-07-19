@@ -12,13 +12,13 @@
 		1DCE56906DBD4EB989558C74 /* Comfortaa-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4C590AA7C3B842B595F24546 /* Comfortaa-Medium.ttf */; };
 		44C346C0C7F1F4EA598E0360 /* libPods-ValorBitcoinAppRebuild.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0188EECACF0C57495990D589 /* libPods-ValorBitcoinAppRebuild.a */; };
 		58CCCD2F1D3743D68A499493 /* Comfortaa-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DA06FFFA0F1644179DF23FEE /* Comfortaa-Regular.ttf */; };
+		5B9B85656C244801B8942982 /* BootSplash.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B67A81C9D8EE4BADB8FDCA11 /* BootSplash.storyboard */; };
 		761780ED2CA45674006654EE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761780EC2CA45674006654EE /* AppDelegate.swift */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		979A553081ED199FD5E7C3B5 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB81A68108700A75B9A /* PrivacyInfo.xcprivacy */; };
+		B49B1DC363814EEE8E3E57FF /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7DD484992279406192768993 /* Colors.xcassets */; };
 		BED4B5CFBDFF4EFCB2F83A4E /* Comfortaa-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 27A52A4ED94D4214A7D994BD /* Comfortaa-Light.ttf */; };
 		D7E49ADFE43F420B9FBAB314 /* Comfortaa-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AD046020235D4C9DB189AC68 /* Comfortaa-Bold.ttf */; };
-		5B9B85656C244801B8942982 /* BootSplash.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B67A81C9D8EE4BADB8FDCA11 /* BootSplash.storyboard */; };
-		B49B1DC363814EEE8E3E57FF /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7DD484992279406192768993 /* Colors.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,14 +31,14 @@
 		4C590AA7C3B842B595F24546 /* Comfortaa-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Comfortaa-Medium.ttf"; path = "../src/assets/fonts/Comfortaa-Medium.ttf"; sourceTree = "<group>"; };
 		511F0351AAADD483B72B6A95 /* Pods-ValorBitcoinAppRebuild.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ValorBitcoinAppRebuild.debug.xcconfig"; path = "Target Support Files/Pods-ValorBitcoinAppRebuild/Pods-ValorBitcoinAppRebuild.debug.xcconfig"; sourceTree = "<group>"; };
 		761780EC2CA45674006654EE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = ValorBitcoinAppRebuild/AppDelegate.swift; sourceTree = "<group>"; };
+		7DD484992279406192768993 /* Colors.xcassets */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = folder.assetcatalog; name = Colors.xcassets; path = ValorBitcoinAppRebuild/Colors.xcassets; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = ValorBitcoinAppRebuild/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AD046020235D4C9DB189AC68 /* Comfortaa-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Comfortaa-Bold.ttf"; path = "../src/assets/fonts/Comfortaa-Bold.ttf"; sourceTree = "<group>"; };
+		B67A81C9D8EE4BADB8FDCA11 /* BootSplash.storyboard */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = BootSplash.storyboard; path = ValorBitcoinAppRebuild/BootSplash.storyboard; sourceTree = "<group>"; };
 		DA06FFFA0F1644179DF23FEE /* Comfortaa-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Comfortaa-Regular.ttf"; path = "../src/assets/fonts/Comfortaa-Regular.ttf"; sourceTree = "<group>"; };
 		E2903798CE5575B7AE23C3E7 /* Pods-ValorBitcoinAppRebuild.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ValorBitcoinAppRebuild.release.xcconfig"; path = "Target Support Files/Pods-ValorBitcoinAppRebuild/Pods-ValorBitcoinAppRebuild.release.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		F2DFC23592B1449FAABBBA8C /* Comfortaa-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Comfortaa-SemiBold.ttf"; path = "../src/assets/fonts/Comfortaa-SemiBold.ttf"; sourceTree = "<group>"; };
-		B67A81C9D8EE4BADB8FDCA11 /* BootSplash.storyboard */ = {isa = PBXFileReference; name = "BootSplash.storyboard"; path = "ValorBitcoinAppRebuild/BootSplash.storyboard"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		7DD484992279406192768993 /* Colors.xcassets */ = {isa = PBXFileReference; name = "Colors.xcassets"; path = "ValorBitcoinAppRebuild/Colors.xcassets"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = folder.assetcatalog; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
