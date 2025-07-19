@@ -1,4 +1,4 @@
-import { use, useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { Crypto } from "../../types/Crypto.types";
 import { ExchangeService } from "../../services/ExchangeService";
 import { Exchange } from "../../types/Exchange.types";
@@ -50,7 +50,7 @@ const useCryptoScreen = () => {
             }); 
         });
     }, [orderBy]);
-    
+
     return {
         selectedCrypto,
         setSelectedCrypto,        

@@ -1,4 +1,4 @@
-import { FlatList, RefreshControl, Text, View } from "react-native";
+import { FlatList, RefreshControl } from "react-native";
 import * as S from "./CryptoScreen.styles";
 import CrytoHeader from "../../components/CrytoHeader/CrytoHeader";
 import useCryptoScreen from "./useCryptoScreen";
@@ -38,7 +38,7 @@ const CryptoScreen: React.FC = () => {
 
     const renderSkeleton = useCallback(() => {
         return <FlatList
-            data={[...Array(skeletonQuantity).keys()]}
+            data={[...Array(exchanges.length > 0 ? exchanges.length : skeletonQuantity).keys()]}
             style={{paddingHorizontal: 10, paddingBottom: 20 }}
             renderItem={(item) => (
                 <ExchangeItemSkeleton />
@@ -47,7 +47,7 @@ const CryptoScreen: React.FC = () => {
             keyExtractor={(item) => item.toString()}
             scrollEnabled={false}
         />
-    }, []);
+    }, [exchanges]);
 
     return (
         <S.Container>
