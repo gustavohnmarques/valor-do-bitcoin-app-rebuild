@@ -19,46 +19,51 @@ const BottomSheetSelectCrypto: React.FC<BottomSheetSelectCryptoProps> = ({ onReq
     const snapPoints = useMemo(() => ['90%'], []);
     const bottomSheetRef = useRef<BottomSheetModal>(null);
     const { isLoading, crypto, search } = useBottomSheetSelectCrypto();
-
-    const imageSize = useScreenPercentage().height(2.4).toNumber();
+    const screenPercentage = useScreenPercentage();
+    
+    const imageSize = useMemo(() => screenPercentage.height(2.4).toNumber(), [screenPercentage]);
+    const iconSize = useMemo(() => screenPercentage.fontSize(2).toNumber(), [screenPercentage]);
 
     useEffect(() => {
         bottomSheetRef.current?.present();
     }, []);
 
 
+    const renderCryptoItem = useCallback(({ item }: { item: Crypto }) => (
+        <S.CryptoItem onPress={() => {
+            setSelectedCrypto(item);
+            onRequestClose();                        
+        }}>
+            <CachedImage
+                uri={`/crypto/${item.name}.webp`}
+                style={{
+                    width: imageSize,
+                    height: imageSize,
+                    borderRadius: 10,
+                }}
+            />
+            <S.Crypto>{item.name}</S.Crypto>
+        </S.CryptoItem>
+    ), [imageSize, setSelectedCrypto, onRequestClose]);
+
+    const renderSeparator = useCallback(() => (
+        <View style={{ height: 1, backgroundColor: 'rgba(255,255,255, .1)' }} />
+    ), []);
+
     const renderCryptoList = useCallback(() => {
         return (
             <BottomSheetFlashList
-                style={{ flex: 1 }}
                 data={crypto}
-                renderItem={({ item }: { item: Crypto }) => (
-                    <S.CryptoItem key={item.id} onPress={() => {
-                        setSelectedCrypto(item);
-                        onRequestClose();                        
-                    }}>
-                        <CachedImage
-                            uri={`/crypto/${item.name}.webp`}
-                            style={{
-                                width: imageSize,
-                                height: imageSize,
-                                borderRadius: 10,
-                            }}
-                        />
-                        <S.Crypto>{item.name}</S.Crypto>
-                    </S.CryptoItem>
-                )}
-                keyExtractor={(item: Crypto) => item.name}
-                ItemSeparatorComponent={() => (
-                    <View style={{ height: 1, backgroundColor: 'rgba(255,255,255, .1)' }} />
-                )}
-                scrollEnabled={false}
-                keyboardShouldPersistTaps="always"
-                estimatedItemSize={200}
-
+                renderItem={renderCryptoItem}
+                keyExtractor={(item: Crypto) => item.id.toString()}
+                ItemSeparatorComponent={renderSeparator}
+                estimatedItemSize={60} 
+                showsVerticalScrollIndicator={false}
+                removeClippedSubviews={true} 
+                getItemType={() => 'crypto-item'} 
             />
         )
-    }, [isLoading, crypto]);
+    }, [crypto, renderCryptoItem, renderSeparator]);
 
     return (
         <BottomSheetModal
@@ -88,7 +93,7 @@ const BottomSheetSelectCrypto: React.FC<BottomSheetSelectCryptoProps> = ({ onReq
                     <S.InputContainer>
                         <FontAwesome6
                             name={'magnifying-glass'}
-                            size={useScreenPercentage().fontSize(2).toNumber()}
+                            size={iconSize}
                             color={'#dfdfe0'}
                         />
                         <S.Input
