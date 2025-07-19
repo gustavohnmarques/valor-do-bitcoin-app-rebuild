@@ -17,6 +17,8 @@
 		979A553081ED199FD5E7C3B5 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB81A68108700A75B9A /* PrivacyInfo.xcprivacy */; };
 		BED4B5CFBDFF4EFCB2F83A4E /* Comfortaa-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 27A52A4ED94D4214A7D994BD /* Comfortaa-Light.ttf */; };
 		D7E49ADFE43F420B9FBAB314 /* Comfortaa-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AD046020235D4C9DB189AC68 /* Comfortaa-Bold.ttf */; };
+		5B9B85656C244801B8942982 /* BootSplash.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B67A81C9D8EE4BADB8FDCA11 /* BootSplash.storyboard */; };
+		B49B1DC363814EEE8E3E57FF /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7DD484992279406192768993 /* Colors.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +37,8 @@
 		E2903798CE5575B7AE23C3E7 /* Pods-ValorBitcoinAppRebuild.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ValorBitcoinAppRebuild.release.xcconfig"; path = "Target Support Files/Pods-ValorBitcoinAppRebuild/Pods-ValorBitcoinAppRebuild.release.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		F2DFC23592B1449FAABBBA8C /* Comfortaa-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Comfortaa-SemiBold.ttf"; path = "../src/assets/fonts/Comfortaa-SemiBold.ttf"; sourceTree = "<group>"; };
+		B67A81C9D8EE4BADB8FDCA11 /* BootSplash.storyboard */ = {isa = PBXFileReference; name = "BootSplash.storyboard"; path = "ValorBitcoinAppRebuild/BootSplash.storyboard"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		7DD484992279406192768993 /* Colors.xcassets */ = {isa = PBXFileReference; name = "Colors.xcassets"; path = "ValorBitcoinAppRebuild/Colors.xcassets"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = folder.assetcatalog; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +61,8 @@
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */,
 				13B07FB81A68108700A75B9A /* PrivacyInfo.xcprivacy */,
+				B67A81C9D8EE4BADB8FDCA11 /* BootSplash.storyboard */,
+				7DD484992279406192768993 /* Colors.xcassets */,
 			);
 			name = ValorBitcoinAppRebuild;
 			sourceTree = "<group>";
@@ -189,6 +195,8 @@
 				58CCCD2F1D3743D68A499493 /* Comfortaa-Regular.ttf in Resources */,
 				1B0085463392450DBAF362F9 /* Comfortaa-SemiBold.ttf in Resources */,
 				979A553081ED199FD5E7C3B5 /* PrivacyInfo.xcprivacy in Resources */,
+				5B9B85656C244801B8942982 /* BootSplash.storyboard in Resources */,
+				B49B1DC363814EEE8E3E57FF /* Colors.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

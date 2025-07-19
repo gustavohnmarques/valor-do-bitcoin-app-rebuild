@@ -4,6 +4,7 @@ import { ExchangeService } from "../../services/ExchangeService";
 import { Exchange } from "../../types/Exchange.types";
 import useScreenPercentage from "../../hooks/useScreenPercentage";
 import { Alert } from "react-native";
+import BootSplash from "react-native-bootsplash";
 
 const useCryptoScreen = () => {
     
@@ -14,6 +15,10 @@ const useCryptoScreen = () => {
     const [exchanges, setExchanges] = useState<Exchange[]>([]);
     const [isLoading, setIsLoading] = useState<boolean>(true);
     const [orderBy, setOrderBy] = useState<'asc' | 'desc'>('asc');
+
+    useEffect(() => {
+        BootSplash.hide({ fade: true });
+    }, []);
 
     useEffect(() => {
         handleCryptoChange();

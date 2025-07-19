@@ -24,6 +24,7 @@
     "date-fns": "^4.1.0",
     "react": "19.1.0",
     "react-native": "0.80.1",
+    "react-native-bootsplash": "^6.3.10",
     "react-native-dotenv": "^3.4.11",
     "react-native-format-currency": "^0.0.5",
     "react-native-gesture-handler": "^2.27.1",
