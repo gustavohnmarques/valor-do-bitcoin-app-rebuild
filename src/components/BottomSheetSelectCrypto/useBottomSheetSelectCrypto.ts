@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Crypto } from "../../types/Crypto.types";
 import { CryptoService } from "../../services/CryptoService";
-import storage from "../../storage/Storage";
+import storage from "../../storage/storage";
 
 const useBottomSheetSelectCrypto = () => {
     const [crypto, setCrypto] = useState<Crypto[]>([]);

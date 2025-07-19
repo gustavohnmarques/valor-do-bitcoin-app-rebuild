@@ -4,7 +4,6 @@ import CrytoHeader from "../../components/CrytoHeader/CrytoHeader";
 import useCryptoScreen from "./useCryptoScreen";
 import { useCallback } from "react";
 import ExchangeItem from "../../components/ExchangeItem/ExchangeItem";
-import { Exchange } from "../../types/Exchange.types";
 import ExchangeItemSkeleton from "../../components/ExchangeItem/ExchangeItemSkeleton";
 
 const CryptoScreen: React.FC = () => {
