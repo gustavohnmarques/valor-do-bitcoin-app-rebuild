@@ -39,6 +39,18 @@ const useCryptoScreen = () => {
         return Math.floor(useScreenPercentage().height(10).toNumber() / 7);
     }, []);
 
+    useEffect(() => {
+        setExchanges(prev => {
+            return [...prev].sort((a, b) => {
+                if (orderBy === 'asc') {
+                    return Number(a.last) - Number(b.last);
+                } else {
+                    return Number(b.last) - Number(a.last);
+                }
+            }); 
+        });
+    }, [orderBy]);
+    
     return {
         selectedCrypto,
         setSelectedCrypto,        

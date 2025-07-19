@@ -33,7 +33,7 @@ const CryptoScreen: React.FC = () => {
             keyExtractor={(item) => item.id.toString()}
             scrollEnabled={false}
         />
-    }, [exchanges]);
+    }, [exchanges, orderBy]);
 
 
     const renderSkeleton = useCallback(() => {
