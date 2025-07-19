@@ -1,11 +1,12 @@
 import styled from '@emotion/native'
 import useScreenPercentage from '../../hooks/useScreenPercentage'
 
-export const Container = styled.SafeAreaView`    
-    height: ${useScreenPercentage().height(7).toString()}px;
+export const Container = styled.View`    
+    height: ${useScreenPercentage().height(8).toString()}px;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+    padding: 0 15px;
 `
 export const CryptoSelector = styled.TouchableOpacity`
     flex-direction: row;
@@ -15,7 +16,7 @@ export const CryptoSelector = styled.TouchableOpacity`
     gap: 20px;
     background-color: #3A4555;
     height: ${useScreenPercentage().height(4).toString()}px;
-    border-radius: ${useScreenPercentage().width(3).toString()}px;
+    border-radius: 10%;
 `
 
 export const CryptoSelectorText = styled.Text`

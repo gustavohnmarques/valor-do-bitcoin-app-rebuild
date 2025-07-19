@@ -25,11 +25,11 @@ const CryptoScreen: React.FC = () => {
 
         return <FlatList
             data={exchanges}
-            style={{ paddingBottom: 20 }}
+            style={{paddingHorizontal: 10, paddingBottom: 20 }}
             renderItem={(item) => (
                 <ExchangeItem {...item.item} />
             )}
-            contentContainerStyle={{ gap: 20 }}
+            contentContainerStyle={{ gap: 20}}
             keyExtractor={(item) => item.id.toString()}
             scrollEnabled={false}
         />
@@ -39,11 +39,11 @@ const CryptoScreen: React.FC = () => {
     const renderSkeleton = useCallback(() => {
         return <FlatList
             data={[...Array(skeletonQuantity).keys()]}
-            style={{ paddingBottom: 20 }}
+            style={{paddingHorizontal: 10, paddingBottom: 20 }}
             renderItem={(item) => (
                 <ExchangeItemSkeleton />
             )}
-            contentContainerStyle={{ gap: 20 }}
+            contentContainerStyle={{ gap: 20}}
             keyExtractor={(item) => item.toString()}
             scrollEnabled={false}
         />
