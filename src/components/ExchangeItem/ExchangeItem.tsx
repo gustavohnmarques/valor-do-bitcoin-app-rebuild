@@ -24,7 +24,7 @@ const ExchangeItem: React.FC<Exchange> = ({ name, image, last, vol, date }) => {
                 </S.ExchangeData>
 
                 <S.CryptoData>
-                    <S.CryptoValue style={{ fontSize: useScreenPercentage().fontSize(Number(last) < 1 ? 1.7 : 1.5).toNumber() }}>
+                    <S.CryptoValue style={{ fontSize: useScreenPercentage().fontSize(Number(last) < 1 ? 1.55 : 1.7).toNumber() }}>
                         R$ {FormatCurrency({ amount: last, decimalCount: Number(last) < 1 ? 10 : 2 })}
                     </S.CryptoValue>
 
