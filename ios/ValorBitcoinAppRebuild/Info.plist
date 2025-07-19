@@ -40,6 +40,9 @@
 		<string>Comfortaa-Medium.ttf</string>
 		<string>Comfortaa-Regular.ttf</string>
 		<string>Comfortaa-SemiBold.ttf</string>
+		<string>FontAwesome6_Brands.ttf</string>
+		<string>FontAwesome6_Regular.ttf</string>
+		<string>FontAwesome6_Solid.ttf</string>
 	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>

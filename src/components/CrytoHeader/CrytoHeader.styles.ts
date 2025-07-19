@@ -16,7 +16,7 @@ export const CryptoSelector = styled.TouchableOpacity`
     gap: 20px;
     background-color: #3A4555;
     height: ${useScreenPercentage().height(4).toString()}px;
-    border-radius: 10%;
+    border-radius: ${useScreenPercentage().width(3).toString()}px;
 `
 
 export const CryptoSelectorText = styled.Text`
