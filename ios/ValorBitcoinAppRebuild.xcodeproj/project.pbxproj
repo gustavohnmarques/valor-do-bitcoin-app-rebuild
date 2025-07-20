@@ -31,10 +31,10 @@
 		4C590AA7C3B842B595F24546 /* Comfortaa-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Comfortaa-Medium.ttf"; path = "../src/assets/fonts/Comfortaa-Medium.ttf"; sourceTree = "<group>"; };
 		511F0351AAADD483B72B6A95 /* Pods-ValorBitcoinAppRebuild.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ValorBitcoinAppRebuild.debug.xcconfig"; path = "Target Support Files/Pods-ValorBitcoinAppRebuild/Pods-ValorBitcoinAppRebuild.debug.xcconfig"; sourceTree = "<group>"; };
 		761780EC2CA45674006654EE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = ValorBitcoinAppRebuild/AppDelegate.swift; sourceTree = "<group>"; };
-		7DD484992279406192768993 /* Colors.xcassets */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = folder.assetcatalog; name = Colors.xcassets; path = ValorBitcoinAppRebuild/Colors.xcassets; sourceTree = "<group>"; };
+		7DD484992279406192768993 /* Colors.xcassets */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = folder.assetcatalog; name = Colors.xcassets; path = ValorBitcoinAppRebuild/Colors.xcassets; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = ValorBitcoinAppRebuild/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AD046020235D4C9DB189AC68 /* Comfortaa-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Comfortaa-Bold.ttf"; path = "../src/assets/fonts/Comfortaa-Bold.ttf"; sourceTree = "<group>"; };
-		B67A81C9D8EE4BADB8FDCA11 /* BootSplash.storyboard */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = BootSplash.storyboard; path = ValorBitcoinAppRebuild/BootSplash.storyboard; sourceTree = "<group>"; };
+		B67A81C9D8EE4BADB8FDCA11 /* BootSplash.storyboard */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = BootSplash.storyboard; path = ValorBitcoinAppRebuild/BootSplash.storyboard; sourceTree = "<group>"; };
 		DA06FFFA0F1644179DF23FEE /* Comfortaa-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Comfortaa-Regular.ttf"; path = "../src/assets/fonts/Comfortaa-Regular.ttf"; sourceTree = "<group>"; };
 		E2903798CE5575B7AE23C3E7 /* Pods-ValorBitcoinAppRebuild.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ValorBitcoinAppRebuild.release.xcconfig"; path = "Target Support Files/Pods-ValorBitcoinAppRebuild/Pods-ValorBitcoinAppRebuild.release.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
@@ -301,6 +301,8 @@
 				DEVELOPMENT_TEAM = 73VL9QT6X9;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = ValorBitcoinAppRebuild/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Valor do bitcoin";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.finance";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -330,6 +332,8 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 73VL9QT6X9;
 				INFOPLIST_FILE = ValorBitcoinAppRebuild/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Valor do bitcoin";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.finance";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -341,7 +345,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.marquestech.valordobitcoin;
 				PRODUCT_NAME = ValorBitcoinAppRebuild;
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -417,10 +421,7 @@
 					"-DFOLLY_CFG_NO_COROUTINES=1",
 					"-DFOLLY_HAVE_CLOCK_GETTIME=1",
 				);
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					" ",
-				);
+				OTHER_LDFLAGS = "$(inherited)  ";
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) DEBUG";
@@ -489,10 +490,7 @@
 					"-DFOLLY_CFG_NO_COROUTINES=1",
 					"-DFOLLY_HAVE_CLOCK_GETTIME=1",
 				);
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					" ",
-				);
+				OTHER_LDFLAGS = "$(inherited)  ";
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 				USE_HERMES = true;
