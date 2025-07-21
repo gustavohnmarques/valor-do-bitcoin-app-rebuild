@@ -27,6 +27,7 @@ const AlertScreen: React.FC = () => {
             estimatedItemSize={5}
             showsVerticalScrollIndicator={false}
             removeClippedSubviews={true}
+            contentContainerStyle={{ paddingBottom: 15 }}
             getItemType={() => 'crypto-item'}
         />
     ), [alerts, renderCryptoItem]);

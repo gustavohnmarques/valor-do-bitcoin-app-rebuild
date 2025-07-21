@@ -11,7 +11,7 @@ const useBottomSheetSelectCrypto = () => {
     useEffect(() => {
         setTimeout(() => {
             getAllCrypto();
-        }, 500);
+        }, 100);
     }, []);
 
 
