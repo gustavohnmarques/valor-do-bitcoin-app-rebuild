@@ -6,7 +6,6 @@ import FontAwesome6 from "react-native-vector-icons/FontAwesome6";
 import useScreenPercentage from "../../hooks/useScreenPercentage";
 import { FormatCurrency } from "../../utils/FormatCurrency";
 import IndicatorIcon from "../IndicatorIcon/IndicatorIcon";
-import { FlashList } from "@shopify/flash-list";
 import { Exchange } from "../../types/Exchange.types";
 import CachedImage from "../CachedImage/CachedImage";
 
@@ -34,8 +33,8 @@ const AlertItem: React.FC<AlertItemProps> = memo(({ type_indicator, type_alert, 
     ), [alertTitle]);
 
 
-    const exchangeItem = useCallback(({ item }: { item: Exchange }) => (
-        <S.ExchangeContainer>
+    const exchangeItem = useCallback((item: Exchange) => (
+        <S.ExchangeContainer key={item.id}>
             <CachedImage
                 uri={`/exchange/${item.image}`}
                 style={{
@@ -46,7 +45,7 @@ const AlertItem: React.FC<AlertItemProps> = memo(({ type_indicator, type_alert, 
             />
             <S.ExchangeName>{item.name}</S.ExchangeName>
         </S.ExchangeContainer>
-    ), [exchanges]);
+    ), [imageSize]);
 
     return (
         <S.Container>
@@ -68,11 +67,11 @@ const AlertItem: React.FC<AlertItemProps> = memo(({ type_indicator, type_alert, 
                     />
                 </S.ChangeStatusContainer>
             </S.HeaderContainer>
-            <FlashList
-                data={exchanges}
-                renderItem={exchangeItem}
-                keyExtractor={(item) => item.id.toString()}
-            />
+            
+            <S.ExchangeItemsContainer>
+                {exchanges.map((item) => exchangeItem(item))}
+            </S.ExchangeItemsContainer>
+
             <S.DeleteContainer onPress={() => handleClickDelete()}>
                 <FontAwesome6
                     name={'trash'}

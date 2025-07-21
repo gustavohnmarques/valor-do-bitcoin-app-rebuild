@@ -73,3 +73,9 @@ export const ExchangeName = styled.Text`
     color: #dfdfe0;
     font-family: 'Comfortaa-Bold';
 `
+
+export const ExchangeItemsContainer = styled.View`
+    flex-direction: 'column';
+    flex-wrap: 'wrap';
+    margin: 10px 10px;
+`
