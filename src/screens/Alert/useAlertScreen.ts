@@ -18,7 +18,7 @@ const AlertScreen = () => {
 
     const getAlerts = () => {
         setIsLoading(true);
-        AlertService.getAllByUser("1b42bcea-5462-43fc-9c41-4095c8350e8f").then(response => {
+        AlertService.getAllByUser("0369f6ac-9444-4083-a430-d34dbc4fbb21").then(response => {
             setAlerts(response.data);
             console.log("Alerts fetched successfully:", response.data);
         }).catch(() => {
