@@ -4,7 +4,7 @@ import useScreenPercentage from "../../hooks/useScreenPercentage";
 import { ButtonAddAlertProps } from "./Types";
 import { useMemo } from "react";
 
-const ButtonAddAlert: React.FC<ButtonAddAlertProps> = ({ onPress }) => {
+const ButtonAddAlert: React.FC<ButtonAddAlertProps> = ({ onPress, icon, text }) => {
 
     const screenPercentage = useScreenPercentage();
     const iconSize = useMemo(() => screenPercentage.fontSize(1.8).toNumber(), [screenPercentage]);
@@ -12,11 +12,11 @@ const ButtonAddAlert: React.FC<ButtonAddAlertProps> = ({ onPress }) => {
     return (
         <S.Container onPress={onPress}>
             <FontAwesome6
-                name="plus"
+                name={icon}
                 size={iconSize}
                 color={'#F5A623'}
             />
-            <S.ButtonText>Adicionar</S.ButtonText>
+            <S.ButtonText>{text}</S.ButtonText>
         </S.Container>
     )
 }

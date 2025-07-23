@@ -15,3 +15,11 @@ export interface Alert {
     active: boolean;
     exchanges: Exchange[];
 }
+
+export interface CreateAlert {
+    cryptoId: number;
+    type_indicator: 'SUBIR' | 'CAIR';
+    type_alert: 'PORCENTAGEM' | 'VALOR';
+    value: number;    
+    exchangeIds: number[];
+}

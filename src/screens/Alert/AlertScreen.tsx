@@ -5,10 +5,17 @@ import useAlertScreen from "./useAlertScreen";
 import { CryptoAlert } from "../../types/Alert.types";
 import { useCallback } from "react";
 import CryptoAlertItem from "../../components/CryptoAlertItem/CryptoAlertItem";
+import { useNavigation } from "@react-navigation/native";
+import { AlertScreenNavigationProp } from "../../types/Navigation.types";
 
 const AlertScreen: React.FC = () => {
 
     const { isLoading, alerts } = useAlertScreen();
+    const navigation = useNavigation<AlertScreenNavigationProp>();
+
+    const handleAddAlert = useCallback(() => {
+        navigation.navigate('CreateAlert');
+    }, [navigation]);
 
     const renderCryptoItem = useCallback((item: CryptoAlert, index: number) => (
         <CryptoAlertItem
@@ -25,7 +32,7 @@ const AlertScreen: React.FC = () => {
             <S.Header>
                 <S.Title>Alertas de preço</S.Title>
                 <S.ButtonContainer>
-                    <ButtonAddAlert onPress={() => { }} />
+                    <ButtonAddAlert onPress={handleAddAlert} icon="plus" text="Adicionar" />
                 </S.ButtonContainer>
             </S.Header>
 
