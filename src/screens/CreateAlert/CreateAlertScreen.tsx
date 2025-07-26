@@ -70,7 +70,7 @@ const CreateAlertScreen: React.FC = () => {
                             }} />
                         </S.ExchangeImage>
                         <S.ExchangeDetails>
-                            <S.ExchangeName>{exchange.name} <S.SmallPrice> - R$ {FormatCurrency({ amount: cryptoAveragePrice.toString(), decimalCount: cryptoAveragePrice < 1 ? 10 : 2 })}</S.SmallPrice></S.ExchangeName>
+                            <S.ExchangeName>{exchange.name} <S.SmallPrice> - R$ {FormatCurrency({ amount: exchange.last, decimalCount: Number(exchange.last) < 1 ? 10 : 2 })}</S.SmallPrice></S.ExchangeName>
                             <S.CheckBoxContainer
                                 value={selectedExchanges.includes(exchange.id)}
                                 onValueChange={() => handleExchangeSelection(exchange.id)}
