@@ -18,7 +18,7 @@ const AlertItem: React.FC<AlertItemProps> = memo(({ type_indicator, type_alert, 
         return type_alert == "PORCENTAGEM" ?
             `${type_indicator == 'CAIR' ? 'Cair' : 'Subir'} ${percentage!}%`
             :
-            `${type_indicator == 'CAIR' ? 'Abaixo de' : 'Acima de'} ${FormatCurrency({ amount: value.toString(), decimalCount: value < 1 ? 10 : 2 })}`
+            `${type_indicator == 'CAIR' ? 'Abaixo de' : 'Acima de'} R$ ${FormatCurrency({ amount: value.toString(), decimalCount: value < 1 ? 10 : 2 })}`
     }, []);
 
 
@@ -40,7 +40,7 @@ const AlertItem: React.FC<AlertItemProps> = memo(({ type_indicator, type_alert, 
                 style={{
                     width: imageSize,
                     height: imageSize,
-                    borderRadius: 5,                    
+                    borderRadius: 5,
                 }}
             />
             <S.ExchangeName>{item.name}</S.ExchangeName>
@@ -55,7 +55,9 @@ const AlertItem: React.FC<AlertItemProps> = memo(({ type_indicator, type_alert, 
                 </S.IconContainer>
                 <S.TitleContainer>
                     <S.Title>{alertTitle}</S.Title>
-                    <S.DefaultValue>(R$ {FormatCurrency({ amount: value.toString(), decimalCount: value < 1 ? 10 : 2 })})</S.DefaultValue>
+                    {type_alert === 'PORCENTAGEM' && (
+                        <S.DefaultValue>(Valor base R$ {FormatCurrency({ amount: value.toString(), decimalCount: value < 1 ? 10 : 2 })})</S.DefaultValue>
+                    )}
                 </S.TitleContainer>
                 <S.ChangeStatusContainer>
                     <Switch
@@ -67,7 +69,7 @@ const AlertItem: React.FC<AlertItemProps> = memo(({ type_indicator, type_alert, 
                     />
                 </S.ChangeStatusContainer>
             </S.HeaderContainer>
-            
+
             <S.ExchangeItemsContainer>
                 {exchanges.map((item) => exchangeItem(item))}
             </S.ExchangeItemsContainer>
