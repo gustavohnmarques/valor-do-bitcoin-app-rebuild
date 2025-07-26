@@ -35,7 +35,7 @@ const useCreateAlertScreen = () => {
 
     const navigation = useNavigation<CreateAlertScreenNavigationProp>();
     const [selectedCrypto, setSelectedCrypto] = useState<Crypto>({
-        id: 0,
+        id: 1,
         name: 'BTC',
     });
     const [isBottomSheetVisible, setIsBottomSheetVisible] = useState(false);
