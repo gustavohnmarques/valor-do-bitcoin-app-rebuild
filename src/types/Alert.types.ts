@@ -23,4 +23,5 @@ export interface CreateAlert {
     type_alert: 'PORCENTAGEM' | 'VALOR';
     value: number;    
     exchangeIds: number[];
+    percentage?: number;
 }

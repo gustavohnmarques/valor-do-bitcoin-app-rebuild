@@ -12,6 +12,8 @@ import { CustomSelectDropdownItem } from "../../components/CustomSelectDropdown/
 import Toast from 'react-native-toast-message'
 import storage from "../../storage/storage";
 import { OneSignal } from 'react-native-onesignal';
+import AlertScreen from "../Alert/useAlertScreen";
+import { AlertService } from "../../services/AlertService";
 
 export const TYPE_ALERT_OPTIONS = [
     { id: 'VALOR', value: 'Preço deve' },
@@ -193,10 +195,27 @@ const useCreateAlertScreen = () => {
     }
 
     const submitForm = (data: CreateAlert) => {
-        Toast.show({
-            type: 'success',
-            text1: 'Alerta criado com sucesso!',
-        });
+
+        //Check if is percentage and set reference value
+        if (data.type_alert === 'PORCENTAGEM') {
+            data.percentage = data.value;
+            data.value = cryptoAveragePrice;
+        }   
+
+        AlertService.create(data)
+            .then((res) => {
+                Toast.show({
+                    type: 'success',
+                    text1: 'Alerta criado com sucesso!',
+                });
+                handleClickBack();
+            })
+            .catch((error) => {                
+                Toast.show({
+                    type: 'error',
+                    text1: error.msg || 'Erro ao criar alerta',
+                });
+            });
     }
 
     useEffect(() => {
