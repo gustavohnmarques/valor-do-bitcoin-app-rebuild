@@ -4,4 +4,5 @@ export interface CryptoAlertItemProps {
     cryptoAlert: CryptoAlert;
     handleEditAlert: (alert: CryptoAlert) => void;
     handleDeleteAlert: (alertId: string) => void;    
+    handleChangeStatus: (alertId: string, active: boolean) => void;
 }

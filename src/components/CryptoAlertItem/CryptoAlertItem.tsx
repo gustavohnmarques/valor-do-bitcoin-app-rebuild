@@ -7,7 +7,7 @@ import { Alert } from '../../types/Alert.types.ts';
 import AlertItem from '../AlertItem/AlertItem.tsx';
 import { View } from 'react-native';
 
-const CryptoAlertItem: React.FC<CryptoAlertItemProps> = memo(({ cryptoAlert, handleEditAlert, handleDeleteAlert }) => {
+const CryptoAlertItem: React.FC<CryptoAlertItemProps> = memo(({ cryptoAlert, handleEditAlert, handleDeleteAlert, handleChangeStatus }) => {
 
     const screenPercentage = useScreenPercentage();
 
@@ -18,6 +18,7 @@ const CryptoAlertItem: React.FC<CryptoAlertItemProps> = memo(({ cryptoAlert, han
             <AlertItem
                 {...item}
                 handleDeleteAlert={handleDeleteAlert}
+                handleChangeStatus={handleChangeStatus}
                 handleEditAlert={() => { }}
             />
             {index < cryptoAlert.alerts.length - 1 && (

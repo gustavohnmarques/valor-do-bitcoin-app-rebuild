@@ -9,7 +9,7 @@ import IndicatorIcon from "../IndicatorIcon/IndicatorIcon";
 import { Exchange } from "../../types/Exchange.types";
 import CachedImage from "../CachedImage/CachedImage";
 
-const AlertItem: React.FC<AlertItemProps> = memo(({ id, type_indicator, type_alert, percentage, value, active, exchanges, handleDeleteAlert }) => {
+const AlertItem: React.FC<AlertItemProps> = memo(({ id, type_indicator, type_alert, percentage, value, active, exchanges, handleDeleteAlert, handleChangeStatus }) => {
 
     const screenPercentage = useScreenPercentage();
     const imageSize = useMemo(() => screenPercentage.height(2.6).toNumber(), [screenPercentage]);
@@ -65,7 +65,7 @@ const AlertItem: React.FC<AlertItemProps> = memo(({ id, type_indicator, type_ale
                         thumbColor={active ? '#F5A623' : '#fff'}
                         ios_backgroundColor="#3e3e3e"
                         value={Boolean(active)}
-                        onValueChange={(data) => { }}
+                        onValueChange={(data) => handleChangeStatus(id, data)}
                     />
                 </S.ChangeStatusContainer>
             </S.HeaderContainer>

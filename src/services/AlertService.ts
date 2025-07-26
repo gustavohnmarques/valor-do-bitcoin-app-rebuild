@@ -10,5 +10,8 @@ export const AlertService = {
     },
     delete(alertId: string) {
         return api.delete(`/alert/delete/${alertId}`);
+    },
+    patch(alertId: string, alert: Partial<CreateAlert>) {
+        return api.patch<CryptoAlert>(`/alert/patch/${alertId}`, alert);
     }
 }

@@ -24,4 +24,5 @@ export interface CreateAlert {
     value: number;    
     exchangeIds: number[];
     percentage?: number;
+    active?: boolean
 }
