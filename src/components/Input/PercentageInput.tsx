@@ -5,7 +5,7 @@ const PercentageInput: React.FC<DefaultInputProps> = (props) => {
 
     const handleChangeText = (text: number | null) => {
         const numericValue = Number(text);
-        if(numericValue > 100){            
+        if(numericValue > 100 && props.maxValue === 1000){            
             props.onChangeText(100);
         }else{
             props.onChangeText(numericValue);
