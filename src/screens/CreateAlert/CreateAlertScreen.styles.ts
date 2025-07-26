@@ -104,8 +104,8 @@ export const AvaragePriceText = styled.Text`
     font-size: ${useScreenPercentage().fontSize(1.4).toString()}px;
     color: #dfdfe0;
     font-family: 'Comfortaa-Regular';
-    margin-left: 20px;
-    margin-top: -10px;
+    margin-left: 20px;    
+    padding-bottom: 10px;
 `
 
 export const CheckBoxContainer = styled(CheckBox)`

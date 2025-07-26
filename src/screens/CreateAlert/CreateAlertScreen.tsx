@@ -150,13 +150,15 @@ const CreateAlertScreen: React.FC = () => {
                     />
                     <S.Divider />
                     {renderInputs()}
+                    <S.AvaragePriceText>
+                        Preço médio: R$ {FormatCurrency({ amount: cryptoAveragePrice.toString(), decimalCount: cryptoAveragePrice < 1 ? 10 : 2 })}
+                    </S.AvaragePriceText>
                 </>
             </Card>
-            <S.AvaragePriceText>
-                Preço médio: R$ {FormatCurrency({ amount: cryptoAveragePrice.toString(), decimalCount: cryptoAveragePrice < 1 ? 10 : 2 })}
-            </S.AvaragePriceText>
 
-            <Card                
+
+
+            <Card
                 title="Corretoras selecionadas"
                 button={renderButtonSelectAll()}
             >
