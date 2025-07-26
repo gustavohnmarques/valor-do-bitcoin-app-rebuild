@@ -11,7 +11,7 @@ const AlertScreen = () => {
     const isFocused = useIsFocused();
     const [isLoading, setIsLoading] = useState(true);
     const [alerts, setAlerts] = useState<CryptoAlert[]>([]);
-
+    
     useEffect(() => {
         const userId = storage.getString('userId');
         if (isFocused && userId) {            

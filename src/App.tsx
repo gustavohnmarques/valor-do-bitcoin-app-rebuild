@@ -5,16 +5,19 @@ import BottomTabs from './navigation/BottomTabs';
 import { BottomSheetModalProvider } from '@gorhom/bottom-sheet';
 import { SafeAreaView } from 'react-native';
 import CustomToast from './components/CustomToast/CustomToast';
+import { LoaderProvider } from './contexts/LoaderContext';
 
 const App = () => {
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
-      <BottomSheetModalProvider>
-        <SafeAreaView style={{ flex: 1 }}>
-          <BottomTabs />
-          <CustomToast />
-        </SafeAreaView>
-      </BottomSheetModalProvider>
+      <LoaderProvider>
+        <BottomSheetModalProvider>
+          <SafeAreaView style={{ flex: 1 }}>
+            <BottomTabs />
+            <CustomToast />
+          </SafeAreaView>
+        </BottomSheetModalProvider>
+      </LoaderProvider>
     </GestureHandlerRootView>
   );
 };
