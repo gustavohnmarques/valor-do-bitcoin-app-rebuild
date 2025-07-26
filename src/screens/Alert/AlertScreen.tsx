@@ -10,7 +10,7 @@ import { AlertScreenNavigationProp } from "../../types/Navigation.types";
 
 const AlertScreen: React.FC = () => {
 
-    const { isLoading, alerts, handleDeleteAlert, handleChangeStatus } = useAlertScreen();
+    const { isLoading, alerts, handleDeleteAlert, handleChangeStatus, handleEditAlert } = useAlertScreen();
     const navigation = useNavigation<AlertScreenNavigationProp>();
 
     const handleAddAlert = useCallback(() => {
@@ -21,7 +21,7 @@ const AlertScreen: React.FC = () => {
         <CryptoAlertItem
             key={item.crypto}
             cryptoAlert={item}
-            handleEditAlert={() => {}}
+            handleEditAlert={handleEditAlert}
             handleDeleteAlert={handleDeleteAlert}
             handleChangeStatus={handleChangeStatus}
         />

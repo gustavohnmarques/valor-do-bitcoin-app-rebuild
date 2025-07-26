@@ -9,7 +9,7 @@ import IndicatorIcon from "../IndicatorIcon/IndicatorIcon";
 import { Exchange } from "../../types/Exchange.types";
 import CachedImage from "../CachedImage/CachedImage";
 
-const AlertItem: React.FC<AlertItemProps> = memo(({ id, type_indicator, type_alert, percentage, value, active, exchanges, handleDeleteAlert, handleChangeStatus }) => {
+const AlertItem: React.FC<AlertItemProps> = memo(({ id, type_indicator, type_alert, percentage, value, active, exchanges, handleDeleteAlert, handleChangeStatus, handleEditAlert }) => {
 
     const screenPercentage = useScreenPercentage();
     const imageSize = useMemo(() => screenPercentage.height(2.6).toNumber(), [screenPercentage]);
@@ -28,9 +28,21 @@ const AlertItem: React.FC<AlertItemProps> = memo(({ id, type_indicator, type_ale
                 text: 'Cancelar',
                 style: 'cancel',
             },
-            { text: 'Excluir', onPress: () => handleDeleteAlert(id)},
+            { text: 'Excluir', onPress: () => handleDeleteAlert(id) },
         ])
     ), [alertTitle]);
+
+    const handleClickEdit = useCallback(() => {
+        handleEditAlert({
+            id,
+            type_indicator,
+            type_alert,
+            percentage,
+            value,
+            active,
+            exchanges
+        });
+    }, []);
 
 
     const exchangeItem = useCallback((item: Exchange) => (
@@ -81,7 +93,7 @@ const AlertItem: React.FC<AlertItemProps> = memo(({ id, type_indicator, type_ale
                     color={'#ce3838'}
                 />
             </S.DeleteContainer>
-            <S.EditContainer onPress={() => { }}>
+            <S.EditContainer onPress={() => handleClickEdit()}>
                 <FontAwesome6
                     name={'pencil'}
                     size={useScreenPercentage().fontSize(1.6).toNumber()}

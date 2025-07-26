@@ -1,7 +1,8 @@
-import { Alert } from "../../types/Alert.types";
+import { Alert, CryptoAlert } from "../../types/Alert.types";
+import { Crypto } from "../../types/Crypto.types";
 
 export interface AlertItemProps extends Alert {
-    handleEditAlert: () => void;
+    handleEditAlert: (alert: Alert) => void;
     handleDeleteAlert: (id: string) => void;
     handleChangeStatus: (id: string, active: boolean) => void;
 }

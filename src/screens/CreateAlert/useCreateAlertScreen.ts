@@ -1,6 +1,6 @@
 import { array, number, object, string } from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, useRoute } from "@react-navigation/native";
 import { CreateAlertScreenNavigationProp } from "../../types/Navigation.types";
 import { useEffect, useMemo, useState } from "react";
 import { Crypto } from "../../types/Crypto.types";
@@ -12,6 +12,8 @@ import { CustomSelectDropdownItem } from "../../components/CustomSelectDropdown/
 import Toast from 'react-native-toast-message'
 import storage from "../../storage/storage";
 import { OneSignal } from 'react-native-onesignal';
+import { RouteProp } from '@react-navigation/native';
+import { AlertStackParamList } from "../../types/Navigation.types";
 import AlertScreen from "../Alert/useAlertScreen";
 import { AlertService } from "../../services/AlertService";
 import { useLoader } from "../../contexts/LoaderContext";
@@ -35,9 +37,14 @@ export const TYPE_INDICATOR_PERCENT_OPTIONS = [
 const useCreateAlertScreen = () => {
 
     const navigation = useNavigation<CreateAlertScreenNavigationProp>();
+    const route = useRoute<RouteProp<AlertStackParamList, 'CreateAlert'>>();
+    
+    // Get parameters from navigation
+    const { alertId, editMode = false, cryptoId, cryptoName } = route.params || {};
+    
     const [selectedCrypto, setSelectedCrypto] = useState<Crypto>({
-        id: 1,
-        name: 'BTC',
+        id: cryptoId ? Number(cryptoId) : 1,
+        name: cryptoName || 'BTC',
     });
     const [isBottomSheetVisible, setIsBottomSheetVisible] = useState(false);
     const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -153,6 +160,23 @@ const useCreateAlertScreen = () => {
     const watchedTypeAlert = watch('type_alert');
     const watchedTypeIndicator = watch('type_indicator');
 
+    // Effect to handle edit mode - load existing alert data
+    useEffect(() => {
+        if (editMode && alertId) {
+            // TODO: Load existing alert data from API
+            // Example:
+            // AlertService.getById(alertId).then((alert) => {
+            //     setValue('type_alert', alert.type_alert);
+            //     setValue('type_indicator', alert.type_indicator);
+            //     setValue('value', alert.value);
+            //     setSelectedExchanges(alert.exchangeIds);
+            //     setSelectedCrypto({ id: alert.cryptoId, name: alert.cryptoName });
+            // });
+            
+            console.log('Edit mode enabled for alert:', alertId);
+        }
+    }, [editMode, alertId, setValue]);
+
     const indicatorOptions = useMemo(() => {
         //Clear value when change type_alert
         setValue('value', 0);
@@ -258,6 +282,10 @@ const useCreateAlertScreen = () => {
         cryptoAveragePrice,
         watchedTypeIndicator,
         isLoading,
+        // Navigation parameters
+        editMode,
+        alertId,
+        routeParams: route.params,
     }
 }
 

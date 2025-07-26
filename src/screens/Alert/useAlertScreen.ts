@@ -1,13 +1,16 @@
 
-import { useIsFocused } from "@react-navigation/native";
+import { useIsFocused, useNavigation } from "@react-navigation/native";
 import { useEffect, useState } from "react";
 import { AlertService } from "../../services/AlertService";
-import { CreateAlert, CryptoAlert } from "../../types/Alert.types";
+import { Alert, CreateAlert, CryptoAlert } from "../../types/Alert.types";
 import storage from "../../storage/storage";
 import Toast from "react-native-toast-message";
 import { useLoader } from "../../contexts/LoaderContext";
+import { AlertScreenNavigationProp } from "../../types/Navigation.types";
 
 const AlertScreen = () => {
+
+    const navigation = useNavigation<AlertScreenNavigationProp>();
 
     const isFocused = useIsFocused();
     const [isLoading, setIsLoading] = useState(true);
@@ -57,9 +60,9 @@ const AlertScreen = () => {
         const updatedAlert: Partial<CreateAlert> = {
             active
         };
-        
+
         AlertService.patch(id, updatedAlert).then((red) => {
-            console.log("Alert status updated successfully", red);   
+            console.log("Alert status updated successfully", red);
             Toast.show({
                 type: 'success',
                 text1: 'Alerta excluído com sucesso',
@@ -75,7 +78,12 @@ const AlertScreen = () => {
         });
     }
 
+    const handleEditAlert = (alert: Alert) => {
+        navigation.navigate('CreateAlert', { alert });
+    }
+
     return {
+        handleEditAlert,
         isLoading,
         alerts,
         handleDeleteAlert,
