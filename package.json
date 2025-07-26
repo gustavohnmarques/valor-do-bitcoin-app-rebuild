@@ -38,6 +38,7 @@
     "react-native-screens": "^4.11.1",
     "react-native-select-dropdown": "^4.0.1",
     "react-native-svg": "^15.12.0",
+    "react-native-toast-message": "^2.3.3",
     "react-native-vector-icons": "^10.2.0",
     "yup": "^1.6.1"
   },
