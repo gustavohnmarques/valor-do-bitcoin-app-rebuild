@@ -2,8 +2,8 @@ import styled from "@emotion/native";
 import useScreenPercentage from "../../hooks/useScreenPercentage";
 
 export const Container = styled.View`
-    padding: 15px 15px 5px 15px;
-    flex: 1;
+    padding: 15px 15px 15px 15px;
+    flex: 1;    
 `
 
 export const HeaderContainer = styled.View`

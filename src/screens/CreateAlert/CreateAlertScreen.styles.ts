@@ -6,7 +6,7 @@ import { Platform } from "react-native";
 export const Container = styled.ScrollView`
   flex: 1;
   background-color: #242c35;  
-  position: relative;
+  position: relative;  
 `;
 
 export const HeaderContainer = styled.View`    
@@ -57,7 +57,7 @@ export const CryptoName = styled.Text`
 `
 
 export const ExchangesContainer = styled.ScrollView`
-    flex: 1;
+    flex: 1;    
 `
 
 export const ExchangeItem = styled.TouchableOpacity`
@@ -70,7 +70,7 @@ export const ExchangeItem = styled.TouchableOpacity`
 
 export const ExchangeImage = styled.View`
     height: auto;
-    width: ${useScreenPercentage().width(12).toString()}px;
+    width: ${useScreenPercentage().width(15).toString()}px;
     justify-content: center;
     align-items: center;        
 `
@@ -85,8 +85,7 @@ export const ExchangeDetails = styled.View`
 `
 
 export const ExchangeName = styled.Text`
-    font-size: ${useScreenPercentage().fontSize(1.55).toString()}px;
-    font-weight: 500;
+    font-size: ${useScreenPercentage().fontSize(1.55).toString()}px;    
     color: #dfdfe0;
     font-family: 'Comfortaa-Medium';
 `
@@ -106,9 +105,16 @@ export const AvaragePriceText = styled.Text`
     color: #dfdfe0;
     font-family: 'Comfortaa-Regular';
     margin-left: 20px;
+    margin-top: -10px;
 `
 
-export const CheckBoxContainer = styled(CheckBox)`{
-    transform: ${Platform.OS === 'ios' ? 'scale(0.8)' : 'none'};
-}
+export const CheckBoxContainer = styled(CheckBox)`
+    transform: ${Platform.OS === 'ios' ? 'scale(0.8)' : 'scale(1)'};
+`
+
+export const SmallPrice = styled.Text`
+    font-size: ${useScreenPercentage().fontSize(1).toString()}px;    
+    color: #aaa9a9ff;
+    font-family: 'Comfortaa-Bold';
+    letter-spacing: 1px;
 `
