@@ -5,13 +5,15 @@ import { AlertService } from "../../services/AlertService";
 import { CryptoAlert } from "../../types/Alert.types";
 import storage from "../../storage/storage";
 import Toast from "react-native-toast-message";
+import { useLoader } from "../../contexts/LoaderContext";
 
 const AlertScreen = () => {
 
     const isFocused = useIsFocused();
     const [isLoading, setIsLoading] = useState(true);
     const [alerts, setAlerts] = useState<CryptoAlert[]>([]);
-    
+    const {show, hide} = useLoader();
+
     useEffect(() => {
         const userId = storage.getString('userId');
         if (isFocused && userId) {            
@@ -32,6 +34,7 @@ const AlertScreen = () => {
     }
 
     const handleDeleteAlert = (id: string) => {
+        show();
         AlertService.delete(id).then(() => {
             Toast.show({
                 type: 'success',
@@ -43,6 +46,8 @@ const AlertScreen = () => {
                 type: 'error',
                 text1: 'Erro ao excluir alerta',
             });
+        }).finally(() => {
+            hide();
         });
     }
 

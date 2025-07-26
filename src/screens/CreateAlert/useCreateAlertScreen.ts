@@ -14,6 +14,7 @@ import storage from "../../storage/storage";
 import { OneSignal } from 'react-native-onesignal';
 import AlertScreen from "../Alert/useAlertScreen";
 import { AlertService } from "../../services/AlertService";
+import { useLoader } from "../../contexts/LoaderContext";
 
 export const TYPE_ALERT_OPTIONS = [
     { id: 'VALOR', value: 'Preço deve' },
@@ -43,6 +44,7 @@ const useCreateAlertScreen = () => {
     const [exchanges, setExchanges] = useState<Exchange[]>([]);
     const [selectedExchanges, setSelectedExchanges] = useState<number[]>([]);
     const [cryptoAveragePrice, setCryptoAveragePrice] = useState<number>(0);
+    const {hide, show} = useLoader();
 
     useEffect(() => {
         setIsBottomSheetVisible(true);
@@ -196,6 +198,7 @@ const useCreateAlertScreen = () => {
 
     const submitForm = (data: CreateAlert) => {
 
+        show();
         //Check if is percentage and set reference value
         if (data.type_alert === 'PORCENTAGEM') {
             data.percentage = data.value;
@@ -215,6 +218,8 @@ const useCreateAlertScreen = () => {
                     type: 'error',
                     text1: error.msg || 'Erro ao criar alerta',
                 });
+            }).finally(() => {
+                hide();
             });
     }
 
