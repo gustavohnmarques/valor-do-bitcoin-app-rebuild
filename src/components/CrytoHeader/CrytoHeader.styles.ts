@@ -26,8 +26,9 @@ export const CryptoSelectorText = styled.Text`
 `
 
 export const OrderedCryptoSelector = styled.TouchableOpacity`
-    width: ${useScreenPercentage().width(5).toString()}px;
+    width: ${useScreenPercentage().width(8).toString()}px;
     height: ${useScreenPercentage().height(5).toString()}px;
     justify-content: center;
-    align-items: center;    
+    align-items: flex-end;
+    background-color: red;
 `

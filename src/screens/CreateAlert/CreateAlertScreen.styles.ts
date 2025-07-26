@@ -1,5 +1,7 @@
 import styled from "@emotion/native";
 import useScreenPercentage from "../../hooks/useScreenPercentage";
+import CheckBox from "@react-native-community/checkbox";
+import { Platform } from "react-native";
 
 export const Container = styled.ScrollView`
   flex: 1;
@@ -104,4 +106,9 @@ export const AvaragePriceText = styled.Text`
     color: #dfdfe0;
     font-family: 'Comfortaa-Regular';
     margin-left: 20px;
+`
+
+export const CheckBoxContainer = styled(CheckBox)`{
+    transform: ${Platform.OS === 'ios' ? 'scale(0.8)' : 'none'};
+}
 `

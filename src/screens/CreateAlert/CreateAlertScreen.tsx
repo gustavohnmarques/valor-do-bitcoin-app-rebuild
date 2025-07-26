@@ -71,13 +71,18 @@ const CreateAlertScreen: React.FC = () => {
                         </S.ExchangeImage>
                         <S.ExchangeDetails>
                             <S.ExchangeName>{exchange.name}</S.ExchangeName>
-                            <CheckBox
+                            <S.CheckBoxContainer
                                 value={selectedExchanges.includes(exchange.id)}
                                 onValueChange={() => handleExchangeSelection(exchange.id)}
                                 tintColors={{
                                     true: '#F5A623',
                                     false: '#fff',
                                 }}
+                                lineWidth={2.5}
+                                tintColor="#fff"
+                                onCheckColor="#F5A623"
+                                boxType="square"
+                                onTintColor="#F5A623"                                
                             />
                         </S.ExchangeDetails>
                     </S.ExchangeItem>
