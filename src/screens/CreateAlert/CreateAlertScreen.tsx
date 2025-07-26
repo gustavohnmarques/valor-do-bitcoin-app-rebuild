@@ -10,9 +10,13 @@ import useScreenPercentage from "../../hooks/useScreenPercentage";
 import BottomSheetSelectCrypto from "../../components/BottomSheetSelectCrypto/BottomSheetSelectCrypto";
 import CheckBox from '@react-native-community/checkbox';
 import { Controller } from "react-hook-form";
+import PriceInput from "../../components/Input/PriceInput";
+import PercentageInput from "../../components/Input/PercentageInput";
+import { FormatCurrency } from "../../utils/FormatCurrency";
+import { ActivityIndicator } from "react-native";
 
 const CreateAlertScreen: React.FC = () => {
-
+    
     const {
         handleClickBack,
         selectedCrypto,
@@ -24,33 +28,34 @@ const CreateAlertScreen: React.FC = () => {
         handleExchangeSelection,
         handleSelectAllExchanges,
         typeAlertOptions,
-        control,
-        errors,
-        getValues,
-        indicatorOptions
+        control,        
+        indicatorOptions,
+        handleSubmit,
+        submitForm,
+        watchedTypeAlert,
+        watchedTypeIndicator,
+        cryptoAveragePrice,
+        isLoading,
     } = useCreateAlertScreen();
 
-
-    const renderInput = useCallback(() => (
-        <S.InputContainer>
-            <S.CustomInput
-                type="currency"
-                options={{
-                    prefix: 'R$ ',
-                    decimalSeparator: ',',
-                    groupSeparator: '.',
-                    precision: 2
-                }}
-                value={''}
-                onChangeText={(formatted, raw) => {
-                    //setValor(formatted);
-                }}
-                keyboardType="numeric"
-                style={{ borderWidth: 1, padding: 8 }}
+    const renderInputs = useCallback(() => {
+        if (watchedTypeAlert === "VALOR") {
+            return <Controller
+                name="value"
+                control={control}
+                render={({ field }) => (
+                    <PriceInput key="price-input" maxValue={10000000} onChangeText={field.onChange} value={field.value} prefix="R$ " delimiter="." separator="," precision={2} />
+                )}
             />
-        </S.InputContainer>
-
-    ), []);
+        }
+        return <Controller
+            name="value"
+            control={control}
+            render={({ field }) => (
+                <PercentageInput key="percentage-input" onChangeText={field.onChange} value={field.value} maxValue={watchedTypeIndicator === "CAIR" ? 1000 : 10000} suffix=" %" separator="." />
+            )}
+        />
+    }, [watchedTypeAlert, watchedTypeIndicator]);
 
     const renderExchanges = useCallback(() => (
         <S.ExchangesContainer>
@@ -98,7 +103,7 @@ const CreateAlertScreen: React.FC = () => {
                     <FontAwesome6 name="chevron-left" size={24} color="#fff" />
                 </S.BackButton>
                 <S.Title>Adicionar Alerta</S.Title>
-                <ButtonAddAlert onPress={handleClickBack} icon="check" text="Salvar" />
+                <ButtonAddAlert onPress={handleSubmit(submitForm)} icon="check" text="Salvar" />
             </S.HeaderContainer>
 
             <Card title="Criptomoeda">
@@ -140,15 +145,18 @@ const CreateAlertScreen: React.FC = () => {
                         )}
                     />
                     <S.Divider />
-                    {renderInput()}
+                    {renderInputs()}
                 </>
             </Card>
+            <S.AvaragePriceText>
+                Preço médio: R$ {FormatCurrency({ amount: cryptoAveragePrice.toString(), decimalCount: cryptoAveragePrice < 1 ? 10 : 2 })}
+            </S.AvaragePriceText>
 
             <Card
                 title="Corretoras selecionadas"
                 button={renderButtonSelectAll()}
-            >
-                {renderExchanges()}
+            >                
+                {isLoading ? <ActivityIndicator size="large" color="#fff" style={{ margin: 50 }} /> : renderExchanges()}
             </Card>
             {isBottomSheetVisible && <BottomSheetSelectCrypto onRequestClose={() => setIsBottomSheetVisible(false)} setSelectedCrypto={setSelectedCrypto} />}
         </S.Container>

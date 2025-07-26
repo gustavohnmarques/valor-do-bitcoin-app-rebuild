@@ -1,6 +1,5 @@
 import styled from "@emotion/native";
 import useScreenPercentage from "../../hooks/useScreenPercentage";
-import { MaskedTextInput } from 'react-native-mask-text';
 
 export const Container = styled.ScrollView`
   flex: 1;
@@ -32,22 +31,6 @@ export const BackButton = styled.TouchableOpacity`
 export const Divider = styled.View`
     height: 1px;
     background-color: rgba(255, 255, 255, 0.2);
-`
-
-export const InputContainer = styled.View`
-  padding: 10px 20px;  
-  height: ${useScreenPercentage().height(7).toString()}px;
-`
-
-export const CustomInput = styled(MaskedTextInput)`    
-    padding-left: 5px;
-    font-size: ${useScreenPercentage().fontSize(1.8).toString()}px;
-    color: #dfdfe0;
-    border-radius: 10px;
-    padding: 10px 15px;
-    background-color: #242c35;   
-    border: 1px solid #242c35;
-    font-family: 'Comfortaa-Bold';
 `
 
 export const CryptoContainer = styled.TouchableOpacity`
@@ -114,4 +97,11 @@ export const SelectAllButtonText = styled.Text`
     font-size: ${useScreenPercentage().fontSize(1.4).toString()}px;
     color: #F5A623;
     font-family: 'Comfortaa-Regular';    
+`
+
+export const AvaragePriceText = styled.Text`
+    font-size: ${useScreenPercentage().fontSize(1.4).toString()}px;
+    color: #dfdfe0;
+    font-family: 'Comfortaa-Regular';
+    margin-left: 20px;
 `

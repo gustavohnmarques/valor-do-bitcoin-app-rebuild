@@ -9,6 +9,7 @@ import { ExchangeService } from "../../services/ExchangeService";
 import { CreateAlert } from "../../types/Alert.types";
 import { useForm } from "react-hook-form";
 import { CustomSelectDropdownItem } from "../../components/CustomSelectDropdown/Types";
+import Toast from 'react-native-toast-message'
 
 export const TYPE_ALERT_OPTIONS = [
     { id: 'VALOR', value: 'Preço deve' },
@@ -26,7 +27,6 @@ export const TYPE_INDICATOR_PERCENT_OPTIONS = [
 ] as CustomSelectDropdownItem[];
 
 
-
 const useCreateAlertScreen = () => {
 
     const navigation = useNavigation<CreateAlertScreenNavigationProp>();
@@ -35,11 +35,16 @@ const useCreateAlertScreen = () => {
         name: 'BTC',
     });
     const [isBottomSheetVisible, setIsBottomSheetVisible] = useState(false);
+    const [isLoading, setIsLoading] = useState<boolean>(true);
     const [exchanges, setExchanges] = useState<Exchange[]>([]);
     const [selectedExchanges, setSelectedExchanges] = useState<number[]>([]);
+    const [cryptoAveragePrice, setCryptoAveragePrice] = useState<number>(0);
+
+    useEffect(() => {
+        setIsBottomSheetVisible(true);
+    }, []);
 
     const handleClickBack = () => {
-
         navigation.goBack();
     }
 
@@ -51,23 +56,46 @@ const useCreateAlertScreen = () => {
         type_alert: string()
             .oneOf(['PORCENTAGEM', 'VALOR'], 'Selecione uma opção válida para o tipo de alerta')
             .required('Tipo de alerta é obrigatório'),
-        value: number().test(
-            'validacaoValor',
-            'Informe um valor válido.',
-            function (value) {
-                const { type_alert } = this.parent;
-                
-                if (value === undefined || value === null) {
-                    return false;
+        value: number()
+            .test(
+                'valorObrigatorio',
+                'Valor é obrigatório',
+                function (value) {
+                    return value !== undefined || value !== null || value === 0;
                 }
+            ).test(
+                'validacaoEspecifica',
+                function (value) {
+                    const { type_alert, type_indicator } = this.parent;
 
-                if (type_alert === 'PORCENTAGEM') {                    
-                    return value > 0 && value <= 100;
+                    if (type_alert === 'PORCENTAGEM' && value! <= 0) {
+                        return this.createError({
+                            message: 'A porcentagem deve ser maior que 0%'
+                        });
+                    }
+
+                    if (type_alert === 'PORCENTAGEM' && type_indicator === 'CAIR' && value! >= 100) {
+                        return this.createError({
+                            message: 'Para "Cair", o valor máximo é 99.99%'
+                        });
+                    }
+
+                    if (type_alert === 'VALOR' && type_indicator === 'SUBIR' && value! <= cryptoAveragePrice) {
+                        return this.createError({
+                            message: 'Informe um valor maior que o preço médio'
+                        });
+                    }
+
+                    if (type_alert === 'VALOR' && type_indicator === 'CAIR' && value! >= cryptoAveragePrice) {
+                        return this.createError({
+                            message: 'Informe um valor menor que o preço médio'
+                        });
+                    }
+
+                    return true;
                 }
-                                
-                return value > 0;
-            }
-        ).required('Valor é obrigatório'),
+            )
+            .required('Valor é obrigatório'),
         exchangeIds: array().of(number().required()).min(1, 'Selecione pelo menos uma corretora.').required(),
     });
 
@@ -88,23 +116,33 @@ const useCreateAlertScreen = () => {
             exchangeIds: [],
         },
     });
-    
+
     const watchedTypeAlert = watch('type_alert');
+    const watchedTypeIndicator = watch('type_indicator');
 
     const indicatorOptions = useMemo(() => {
+        //Clear value when change type_alert
+        setValue('value', 0);
+
         if (watchedTypeAlert === "VALOR") {
             return TYPE_INDICATOR_OPTIONS;
         }
         return TYPE_INDICATOR_PERCENT_OPTIONS;
-    }, [watchedTypeAlert]);
+    }, [watchedTypeAlert, watchedTypeIndicator]);
 
 
     useEffect(() => {
         setSelectedExchanges([]);
+        setIsLoading(true);
         ExchangeService.getByCrypto(selectedCrypto.name).then((response) => {
             setExchanges(response.data);
+            const total = response.data.reduce((acc, exchange) => acc + Number(exchange.last), 0);
+            const average = total / response.data.length;
+            setCryptoAveragePrice(average);
         }).catch((error) => {
             console.error("Erro ao buscar exchanges:", error);
+        }).finally(() => {
+            setIsLoading(false);
         });
     }, [selectedCrypto]);
 
@@ -125,6 +163,28 @@ const useCreateAlertScreen = () => {
         }
     }
 
+    const submitForm = (data: CreateAlert) => {
+        Toast.show({
+            type: 'success',
+            text1: 'Alerta criado com sucesso!',
+        });
+    }
+
+    useEffect(() => {
+        if (Object.keys(errors).length > 0) {
+            const errorMessage = Object.values(errors)[0].message || 'Erro ao validar o formulário';
+            Toast.show({
+                type: 'error',
+                text1: errorMessage,
+            });
+        }
+    }, [errors]);
+
+
+    useEffect(() => {
+        setValue('exchangeIds', selectedExchanges);
+    }, [selectedExchanges]);
+
     return {
         handleClickBack,
         selectedCrypto,
@@ -134,14 +194,17 @@ const useCreateAlertScreen = () => {
         exchanges,
         selectedExchanges,
         handleExchangeSelection,
-        handleSelectAllExchanges,        
+        handleSelectAllExchanges,
         control,
         handleSubmit,
-        setValue,
-        getValues,        
-        errors,
+        submitForm,
+        getValues,
         indicatorOptions,
         typeAlertOptions: TYPE_ALERT_OPTIONS,
+        watchedTypeAlert,
+        cryptoAveragePrice,
+        watchedTypeIndicator,
+        isLoading,
     }
 }
 
