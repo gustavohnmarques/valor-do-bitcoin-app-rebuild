@@ -7,5 +7,8 @@ export const AlertService = {
     },
     create(alert: CreateAlert) {
         return api.post<CryptoAlert>('/alert', alert);
+    },
+    delete(alertId: string) {
+        return api.delete(`/alert/delete/${alertId}`);
     }
 }

@@ -33,7 +33,18 @@ export const ButtonContainer = styled.View`
 
 export const AlertsContainer = styled.View`
     flex: 1;
-    padding: 0 15px;
-    
-    
+    padding: 0 15px;        
+`
+
+export const EmptyContainer = styled.View`
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+`
+
+export const EmptyText = styled.Text`
+    font-size: ${useScreenPercentage().fontSize(1.8).toString()}px;
+    color: #fff;
+    font-family: 'Comfortaa-Regular';
+    text-align: center;
 `

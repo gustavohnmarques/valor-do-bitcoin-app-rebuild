@@ -10,7 +10,7 @@ import { AlertScreenNavigationProp } from "../../types/Navigation.types";
 
 const AlertScreen: React.FC = () => {
 
-    const { isLoading, alerts } = useAlertScreen();
+    const { isLoading, alerts, handleDeleteAlert } = useAlertScreen();
     const navigation = useNavigation<AlertScreenNavigationProp>();
 
     const handleAddAlert = useCallback(() => {
@@ -22,7 +22,7 @@ const AlertScreen: React.FC = () => {
             key={item.crypto}
             cryptoAlert={item}
             handleEditAlert={() => {}}
-            handleDeleteAlert={() => {}}
+            handleDeleteAlert={handleDeleteAlert}
         />
     ), []);
 
@@ -46,6 +46,12 @@ const AlertScreen: React.FC = () => {
                     >
                         {alerts.map((item, index) => renderCryptoItem(item, index))}
                     </ScrollView>
+                )}
+
+                {!isLoading && alerts.length === 0 && (
+                    <S.EmptyContainer>
+                        <S.EmptyText>Você ainda não possui alertas de preço.</S.EmptyText>
+                    </S.EmptyContainer>
                 )}
             </S.AlertsContainer>
 

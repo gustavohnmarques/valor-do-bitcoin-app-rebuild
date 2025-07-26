@@ -9,7 +9,7 @@ import IndicatorIcon from "../IndicatorIcon/IndicatorIcon";
 import { Exchange } from "../../types/Exchange.types";
 import CachedImage from "../CachedImage/CachedImage";
 
-const AlertItem: React.FC<AlertItemProps> = memo(({ type_indicator, type_alert, percentage, value, active, exchanges }) => {
+const AlertItem: React.FC<AlertItemProps> = memo(({ id, type_indicator, type_alert, percentage, value, active, exchanges, handleDeleteAlert }) => {
 
     const screenPercentage = useScreenPercentage();
     const imageSize = useMemo(() => screenPercentage.height(2.6).toNumber(), [screenPercentage]);
@@ -28,7 +28,7 @@ const AlertItem: React.FC<AlertItemProps> = memo(({ type_indicator, type_alert, 
                 text: 'Cancelar',
                 style: 'cancel',
             },
-            { text: 'Excluir', onPress: () => { } },
+            { text: 'Excluir', onPress: () => handleDeleteAlert(id)},
         ])
     ), [alertTitle]);
 
