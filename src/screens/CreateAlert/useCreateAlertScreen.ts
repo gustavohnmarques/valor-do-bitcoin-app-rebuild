@@ -46,11 +46,11 @@ const useCreateAlertScreen = () => {
         setIsBottomSheetVisible(true);
 
         const userId = storage.getString('userId');
-        OneSignal.Notifications.requestPermission(true);        
+        OneSignal.Notifications.requestPermission(true);
         if (userId !== undefined) {
             setValue('userId', userId);
         } else {
-            OneSignal.User.getOnesignalId().then((user) => {                
+            OneSignal.User.getOnesignalId().then((user) => {
                 if (user == null) {
                     Toast.show({
                         type: 'error',
@@ -111,6 +111,12 @@ const useCreateAlertScreen = () => {
                     if (type_alert === 'VALOR' && type_indicator === 'CAIR' && value! >= cryptoAveragePrice) {
                         return this.createError({
                             message: 'Informe um valor menor que o preço médio'
+                        });
+                    }
+
+                    if (type_alert === 'VALOR' && type_indicator === 'CAIR' && value! <= 0) {
+                        return this.createError({
+                            message: 'Informe um valor maior que 0'
                         });
                     }
 
