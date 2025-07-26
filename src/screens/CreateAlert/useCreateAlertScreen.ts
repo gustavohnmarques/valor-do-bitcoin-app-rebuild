@@ -10,6 +10,8 @@ import { CreateAlert } from "../../types/Alert.types";
 import { useForm } from "react-hook-form";
 import { CustomSelectDropdownItem } from "../../components/CustomSelectDropdown/Types";
 import Toast from 'react-native-toast-message'
+import storage from "../../storage/storage";
+import { OneSignal } from 'react-native-onesignal';
 
 export const TYPE_ALERT_OPTIONS = [
     { id: 'VALOR', value: 'Preço deve' },
@@ -42,6 +44,25 @@ const useCreateAlertScreen = () => {
 
     useEffect(() => {
         setIsBottomSheetVisible(true);
+
+        const userId = storage.getString('userId');
+        OneSignal.Notifications.requestPermission(true);        
+        if (userId !== undefined) {
+            setValue('userId', userId);
+        } else {
+            OneSignal.User.getOnesignalId().then((user) => {                
+                if (user == null) {
+                    Toast.show({
+                        type: 'error',
+                        text1: 'Não foi possível habilitar notificações.',
+                    });
+                } else {
+                    storage.set('userId', user);
+                    setValue('userId', user);
+                }
+            })
+
+        }
     }, []);
 
     const handleClickBack = () => {
@@ -49,6 +70,7 @@ const useCreateAlertScreen = () => {
     }
 
     const createAlertForm = object({
+        userId: string().required('Usuário é obrigatório'),
         cryptoId: number().required(),
         type_indicator: string()
             .oneOf(['SUBIR', 'CAIR'], 'Selecione uma opção válida para o indicador')
@@ -109,6 +131,7 @@ const useCreateAlertScreen = () => {
     } = useForm<CreateAlert>({
         resolver: yupResolver(createAlertForm),
         defaultValues: {
+            userId: '',
             cryptoId: selectedCrypto.id,
             type_indicator: 'SUBIR',
             type_alert: 'VALOR',

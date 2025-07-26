@@ -3,6 +3,7 @@ import { useIsFocused } from "@react-navigation/native";
 import { useEffect, useState } from "react";
 import { AlertService } from "../../services/AlertService";
 import { CryptoAlert } from "../../types/Alert.types";
+import storage from "../../storage/storage";
 
 const AlertScreen = () => {
 
@@ -11,16 +12,16 @@ const AlertScreen = () => {
     const [alerts, setAlerts] = useState<CryptoAlert[]>([]);
 
     useEffect(() => {
-        if (isFocused) {            
-            getAlerts();
+        const userId = storage.getString('userId');
+        if (isFocused && userId) {            
+            getAlerts(userId);
         }
     }, [isFocused]);
 
-    const getAlerts = () => {
+    const getAlerts = (userId: string) => {
         setIsLoading(true);
-        AlertService.getAllByUser("0369f6ac-9444-4083-a430-d34dbc4fbb21").then(response => {
+        AlertService.getAllByUser(userId).then(response => {
             setAlerts(response.data);
-            console.log("Alerts fetched successfully:", response.data);
         }).catch(() => {
             console.error("Failed to fetch alerts");
         }).finally(() => {

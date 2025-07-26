@@ -4,7 +4,7 @@ import ButtonAddAlert from "../../components/ButtonAddAlert/ButtonAddAlert";
 import useCreateAlertScreen from "./useCreateAlertScreen";
 import CustomSelectDropdown from "../../components/CustomSelectDropdown/CustomSelectDropdown";
 import Card from "../../components/Card/Card";
-import { useCallback } from "react";
+import React, { useCallback, Fragment } from "react";
 import CachedImage from "../../components/CachedImage/CachedImage";
 import useScreenPercentage from "../../hooks/useScreenPercentage";
 import BottomSheetSelectCrypto from "../../components/BottomSheetSelectCrypto/BottomSheetSelectCrypto";
@@ -60,8 +60,8 @@ const CreateAlertScreen: React.FC = () => {
     const renderExchanges = useCallback(() => (
         <S.ExchangesContainer>
             {exchanges.map((exchange, index) => (
-                <>
-                    <S.ExchangeItem key={exchange.id} onPress={() => handleExchangeSelection(exchange.id)}>
+                <Fragment key={exchange.id}>
+                    <S.ExchangeItem onPress={() => handleExchangeSelection(exchange.id)}>
                         <S.ExchangeImage>
                             <CachedImage uri={`/exchange/${exchange.image}`} style={{
                                 borderRadius: 10,
@@ -72,7 +72,6 @@ const CreateAlertScreen: React.FC = () => {
                         <S.ExchangeDetails>
                             <S.ExchangeName>{exchange.name}</S.ExchangeName>
                             <CheckBox
-                                key={`checkbox-${exchange.id}`}
                                 value={selectedExchanges.includes(exchange.id)}
                                 onValueChange={() => handleExchangeSelection(exchange.id)}
                                 tintColors={{
@@ -82,8 +81,8 @@ const CreateAlertScreen: React.FC = () => {
                             />
                         </S.ExchangeDetails>
                     </S.ExchangeItem>
-                    {index < exchanges.length - 1 && <S.Divider key={`divider-${exchange.id}`} />}
-                </>
+                    {index < exchanges.length - 1 && <S.Divider />}
+                </Fragment>
             ))}
         </S.ExchangesContainer>
     ), [exchanges, selectedExchanges, handleExchangeSelection]);

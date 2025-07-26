@@ -17,6 +17,7 @@ export interface Alert {
 }
 
 export interface CreateAlert {
+    userId: string;
     cryptoId: number;
     type_indicator: 'SUBIR' | 'CAIR';
     type_alert: 'PORCENTAGEM' | 'VALOR';

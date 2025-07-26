@@ -5,9 +5,11 @@ import { Exchange } from "../../types/Exchange.types";
 import useScreenPercentage from "../../hooks/useScreenPercentage";
 import { Alert } from "react-native";
 import BootSplash from "react-native-bootsplash";
+import { ONE_SIGNAL_APP_ID } from '@env';
+import { OneSignal } from 'react-native-onesignal';
 
 const useCryptoScreen = () => {
-    
+
     const [selectedCrypto, setSelectedCrypto] = useState<Crypto>({
         id: 1,
         name: 'BTC',
@@ -17,7 +19,8 @@ const useCryptoScreen = () => {
     const [orderBy, setOrderBy] = useState<'asc' | 'desc'>('asc');
 
     useEffect(() => {
-        BootSplash.hide({ fade: true });
+        BootSplash.hide({ fade: true });            
+        OneSignal.initialize(ONE_SIGNAL_APP_ID);
     }, []);
 
     useEffect(() => {
@@ -27,7 +30,7 @@ const useCryptoScreen = () => {
     const handleCryptoChange = useCallback(() => {
 
         if (!selectedCrypto) return;
-        
+
         setIsLoading(true);
         ExchangeService.getByCrypto(selectedCrypto.name).then(response => {
             setExchanges(response.data);
@@ -52,15 +55,15 @@ const useCryptoScreen = () => {
                 } else {
                     return Number(b.last) - Number(a.last);
                 }
-            }); 
+            });
         });
     }, [orderBy]);
 
     return {
         selectedCrypto,
-        setSelectedCrypto,        
+        setSelectedCrypto,
         handleCryptoChange,
-        isLoading,        
+        isLoading,
         exchanges,
         skeletonQuantity,
         orderBy,
