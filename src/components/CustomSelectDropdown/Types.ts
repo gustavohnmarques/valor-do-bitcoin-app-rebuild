@@ -1,4 +1,5 @@
 export interface CustomSelectDropdownProps {    
+    defaultValue?: CustomSelectDropdownItem;
     items: CustomSelectDropdownItem[];
     onChange: (item: CustomSelectDropdownItem) => void;
 }

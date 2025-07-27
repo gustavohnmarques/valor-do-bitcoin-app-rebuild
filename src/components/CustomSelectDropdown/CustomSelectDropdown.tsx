@@ -6,7 +6,7 @@ import useScreenPercentage from "../../hooks/useScreenPercentage";
 import { View, Text } from "react-native";
 import { useCallback, useMemo, memo, use } from "react";
 
-const CustomSelectDropdown: React.FC<CustomSelectDropdownProps> = memo(({ items, onChange }) => {
+const CustomSelectDropdown: React.FC<CustomSelectDropdownProps> = memo(({ items, onChange, defaultValue }) => {
 
     const screenPercentage = useScreenPercentage();
 
@@ -51,7 +51,7 @@ const CustomSelectDropdown: React.FC<CustomSelectDropdownProps> = memo(({ items,
         <S.Container>
             <SelectDropdown
                 data={items}
-                defaultValue={items[0]}
+                defaultValue={defaultValue}
                 onSelect={handleSelect}
                 renderButton={renderButton}
                 renderItem={renderItem}

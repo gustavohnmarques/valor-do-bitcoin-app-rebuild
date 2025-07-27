@@ -8,5 +8,6 @@ export type AlertStackParamList = {
   Alert: undefined;
   CreateAlert: {
     alert: Alert;
+    crypto: string;
   } | undefined;
 };

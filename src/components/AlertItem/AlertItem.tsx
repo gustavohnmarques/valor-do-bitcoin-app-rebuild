@@ -93,13 +93,13 @@ const AlertItem: React.FC<AlertItemProps> = memo(({ id, type_indicator, type_ale
                     color={'#ce3838'}
                 />
             </S.DeleteContainer>
-            <S.EditContainer onPress={() => handleClickEdit()}>
+            {/* <S.EditContainer onPress={() => handleClickEdit()}>
                 <FontAwesome6
                     name={'pencil'}
                     size={useScreenPercentage().fontSize(1.6).toNumber()}
                     color={'#dfdfe0'}
                 />
-            </S.EditContainer>
+            </S.EditContainer> */}
         </S.Container>
     )
 })

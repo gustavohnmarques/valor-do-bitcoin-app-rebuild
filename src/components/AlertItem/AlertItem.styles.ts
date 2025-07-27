@@ -58,7 +58,7 @@ export const DeleteContainer = styled.TouchableOpacity`
     padding: 13px;    
     position: absolute;
     bottom: 0;
-    right: 40px;
+    right: 10px;
 `
 
 export const ExchangeContainer = styled.View`

@@ -8,7 +8,6 @@ import React, { useCallback, Fragment } from "react";
 import CachedImage from "../../components/CachedImage/CachedImage";
 import useScreenPercentage from "../../hooks/useScreenPercentage";
 import BottomSheetSelectCrypto from "../../components/BottomSheetSelectCrypto/BottomSheetSelectCrypto";
-import CheckBox from '@react-native-community/checkbox';
 import { Controller } from "react-hook-form";
 import PriceInput from "../../components/Input/PriceInput";
 import PercentageInput from "../../components/Input/PercentageInput";
@@ -36,6 +35,8 @@ const CreateAlertScreen: React.FC = () => {
         watchedTypeIndicator,
         cryptoAveragePrice,
         isLoading,
+        watchedValue,
+        editMode,
     } = useCreateAlertScreen();
 
     const renderInputs = useCallback(() => {
@@ -55,7 +56,7 @@ const CreateAlertScreen: React.FC = () => {
                 <PercentageInput key="percentage-input" onChangeText={field.onChange} value={field.value} maxValue={watchedTypeIndicator === "CAIR" ? 1000 : 10000} suffix=" %" separator="." />
             )}
         />
-    }, [watchedTypeAlert, watchedTypeIndicator]);
+    }, [watchedTypeAlert, watchedTypeIndicator, watchedValue]);
 
     const renderExchanges = useCallback(() => (
         <S.ExchangesContainer>
@@ -111,7 +112,7 @@ const CreateAlertScreen: React.FC = () => {
             </S.HeaderContainer>
 
             <Card title="Criptomoeda">
-                <S.CryptoContainer onPress={() => setIsBottomSheetVisible(true)}>
+                <S.CryptoContainer onPress={() => setIsBottomSheetVisible(true)} disabled={editMode}>
                     <S.CryptoSelector>
                         <CachedImage uri={`/crypto/${selectedCrypto.name}.webp`} style={{
                             width: useScreenPercentage().height(2.4).toNumber(),
@@ -131,6 +132,7 @@ const CreateAlertScreen: React.FC = () => {
                         control={control}
                         render={({ field }) => (
                             <CustomSelectDropdown
+                                defaultValue={typeAlertOptions.find(option => option.id === field.value)}
                                 items={typeAlertOptions}
                                 onChange={(item) => field.onChange(item.id)}
                             />
@@ -143,6 +145,7 @@ const CreateAlertScreen: React.FC = () => {
                         control={control}
                         render={({ field }) => (
                             <CustomSelectDropdown
+                                defaultValue={indicatorOptions.find(option => option.id === field.value)}
                                 items={indicatorOptions}
                                 onChange={(item) => field.onChange(item.id)}
                             />

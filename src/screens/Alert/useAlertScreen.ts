@@ -61,25 +61,24 @@ const AlertScreen = () => {
             active
         };
 
-        AlertService.patch(id, updatedAlert).then((red) => {
-            console.log("Alert status updated successfully", red);
+        AlertService.patch(id, updatedAlert).then((red) => {            
             Toast.show({
                 type: 'success',
-                text1: 'Alerta excluído com sucesso',
+                text1: 'Alerta atualizado com sucesso',
             });
             getAlerts(storage.getString('userId') || '');
         }).catch(() => {
             Toast.show({
                 type: 'error',
-                text1: 'Erro ao excluir alerta',
+                text1: 'Erro ao atualizar alerta',
             });
         }).finally(() => {
             hide();
         });
     }
 
-    const handleEditAlert = (alert: Alert) => {
-        navigation.navigate('CreateAlert', { alert });
+    const handleEditAlert = (alert: Alert, crypto: string) => {
+        navigation.navigate('CreateAlert', { alert, crypto });
     }
 
     return {

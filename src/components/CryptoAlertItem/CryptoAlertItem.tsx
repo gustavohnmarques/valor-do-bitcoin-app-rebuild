@@ -19,7 +19,7 @@ const CryptoAlertItem: React.FC<CryptoAlertItemProps> = memo(({ cryptoAlert, han
                 {...item}
                 handleDeleteAlert={handleDeleteAlert}
                 handleChangeStatus={handleChangeStatus}
-                handleEditAlert={handleEditAlert}
+                handleEditAlert={(alert) => handleEditAlert(alert, cryptoAlert.crypto)}
             />
             {index < cryptoAlert.alerts.length - 1 && (
                 <View style={{ height: 1, backgroundColor: 'rgba(255, 255, 255, 0.3)', marginVertical: 10 }} />

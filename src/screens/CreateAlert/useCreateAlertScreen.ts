@@ -14,7 +14,6 @@ import storage from "../../storage/storage";
 import { OneSignal } from 'react-native-onesignal';
 import { RouteProp } from '@react-navigation/native';
 import { AlertStackParamList } from "../../types/Navigation.types";
-import AlertScreen from "../Alert/useAlertScreen";
 import { AlertService } from "../../services/AlertService";
 import { useLoader } from "../../contexts/LoaderContext";
 
@@ -39,23 +38,31 @@ const useCreateAlertScreen = () => {
     const navigation = useNavigation<CreateAlertScreenNavigationProp>();
     const route = useRoute<RouteProp<AlertStackParamList, 'CreateAlert'>>();
     
-    // Get parameters from navigation
-    const { alertId, editMode = false, cryptoId, cryptoName } = route.params || {};
+    const { alert } = route.params || {};
     
     const [selectedCrypto, setSelectedCrypto] = useState<Crypto>({
-        id: cryptoId ? Number(cryptoId) : 1,
-        name: cryptoName || 'BTC',
+        id: 1,
+        name: 'BTC',
     });
     const [isBottomSheetVisible, setIsBottomSheetVisible] = useState(false);
     const [isLoading, setIsLoading] = useState<boolean>(true);
     const [exchanges, setExchanges] = useState<Exchange[]>([]);
     const [selectedExchanges, setSelectedExchanges] = useState<number[]>([]);
     const [cryptoAveragePrice, setCryptoAveragePrice] = useState<number>(0);
+    const [editMode, setEditMode] = useState<boolean>(!!alert);
     const {hide, show} = useLoader();
 
     useEffect(() => {
-        setIsBottomSheetVisible(true);
-
+        if (alert) {            
+            setSelectedExchanges(alert.exchanges.map(exchange => exchange.id));
+            setValue('type_indicator', alert.type_indicator);
+            setValue('type_alert', alert.type_alert);
+            setValue('value', alert.type_alert === "PORCENTAGEM" ? alert.percentage! : alert.value);
+            setValue('percentage', alert.percentage);        
+        }else {
+            setIsBottomSheetVisible(true);
+        }
+        
         const userId = storage.getString('userId');
         OneSignal.Notifications.requestPermission(true);
         if (userId !== undefined) {
@@ -74,7 +81,7 @@ const useCreateAlertScreen = () => {
             })
 
         }
-    }, []);
+    }, [alert]);
 
     const handleClickBack = () => {
         navigation.goBack();
@@ -150,32 +157,16 @@ const useCreateAlertScreen = () => {
         defaultValues: {
             userId: '',
             cryptoId: selectedCrypto.id,
-            type_indicator: 'SUBIR',
-            type_alert: 'VALOR',
-            value: 0,
-            exchangeIds: [],
+            type_indicator: alert && alert.type_indicator || 'SUBIR',
+            type_alert: alert && alert.type_alert || 'PORCENTAGEM',
+            value: alert && (alert.type_alert === "PORCENTAGEM" ? alert.percentage! : alert.value) || 5,
+            exchangeIds: alert && alert.exchanges.map(exchange => exchange.id) || [],
         },
     });
 
     const watchedTypeAlert = watch('type_alert');
     const watchedTypeIndicator = watch('type_indicator');
-
-    // Effect to handle edit mode - load existing alert data
-    useEffect(() => {
-        if (editMode && alertId) {
-            // TODO: Load existing alert data from API
-            // Example:
-            // AlertService.getById(alertId).then((alert) => {
-            //     setValue('type_alert', alert.type_alert);
-            //     setValue('type_indicator', alert.type_indicator);
-            //     setValue('value', alert.value);
-            //     setSelectedExchanges(alert.exchangeIds);
-            //     setSelectedCrypto({ id: alert.cryptoId, name: alert.cryptoName });
-            // });
-            
-            console.log('Edit mode enabled for alert:', alertId);
-        }
-    }, [editMode, alertId, setValue]);
+    const watchedValue = watch('value');
 
     const indicatorOptions = useMemo(() => {
         //Clear value when change type_alert
@@ -187,9 +178,7 @@ const useCreateAlertScreen = () => {
         return TYPE_INDICATOR_PERCENT_OPTIONS;
     }, [watchedTypeAlert, watchedTypeIndicator]);
 
-
-    useEffect(() => {
-        setSelectedExchanges([]);
+    useEffect(() => {        
         setIsLoading(true);
         ExchangeService.getByCrypto(selectedCrypto.name).then((response) => {
             setExchanges(response.data);
@@ -282,10 +271,9 @@ const useCreateAlertScreen = () => {
         cryptoAveragePrice,
         watchedTypeIndicator,
         isLoading,
-        // Navigation parameters
+        watchedValue,
+        alert,
         editMode,
-        alertId,
-        routeParams: route.params,
     }
 }
 
