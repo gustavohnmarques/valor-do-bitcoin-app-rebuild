@@ -13,7 +13,7 @@ const AlertScreen = () => {
     const navigation = useNavigation<AlertScreenNavigationProp>();
 
     const isFocused = useIsFocused();
-    const [isLoading, setIsLoading] = useState(true);
+    const [isLoading, setIsLoading] = useState(false);
     const [alerts, setAlerts] = useState<CryptoAlert[]>([]);
     const { show, hide } = useLoader();
 
