@@ -163,7 +163,7 @@ const useCreateAlertScreen = () => {
             exchangeIds: alert && alert.exchanges.map(exchange => exchange.id) || [],
         },
     });
-
+    
     const watchedTypeAlert = watch('type_alert');
     const watchedTypeIndicator = watch('type_indicator');
     const watchedValue = watch('value');
@@ -185,6 +185,8 @@ const useCreateAlertScreen = () => {
             const total = response.data.reduce((acc, exchange) => acc + Number(exchange.last), 0);
             const average = total / response.data.length;
             setCryptoAveragePrice(average);
+            setSelectedExchanges([])
+            setValue('cryptoId', selectedCrypto.id);
         }).catch((error) => {
             console.error("Erro ao buscar exchanges:", error);
         }).finally(() => {
@@ -210,7 +212,6 @@ const useCreateAlertScreen = () => {
     }
 
     const submitForm = (data: CreateAlert) => {
-
         show();
         //Check if is percentage and set reference value
         if (data.type_alert === 'PORCENTAGEM') {
