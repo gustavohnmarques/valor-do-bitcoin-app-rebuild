@@ -5,10 +5,10 @@ Acompanhe o valor do Bitcoin e de mais de 100 criptomoedas em tempo quase real n
 ## 📱 Screenshots
 
 <div align="center">
-  <img src="app/assets/images/imagem1.png" width="200" />
-  <img src="app/assets/images/imagem2.png" width="200" />
-  <img src="app/assets/images/imagem3.png" width="200" />
-  <img src="app/assets/images/imagem4.png" width="200" />
+  <img src="src/assets/images/imagem1.webp" width="200" />
+  <img src="src/assets/images/imagem2.webp" width="200" />
+  <img src="src/assets/images/imagem3.webp" width="200" />
+  <img src="src/assets/images/imagem4.webp" width="200" />
 </div>
 
 ## ✨ Funcionalidades
